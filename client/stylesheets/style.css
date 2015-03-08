@@ -16,6 +16,10 @@
     margin-bottom: 0px;
 }
 
+textarea {
+    resize: vertical;
+}
+
 body {
     background: #eee;
     color: #666666;

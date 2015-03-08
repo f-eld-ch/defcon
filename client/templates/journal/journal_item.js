@@ -1,5 +1,6 @@
 Template.journalItem.events({
     "submit .update-journal-entry": function (event) {
+        event.preventDefault();
         console.log("Update journal entry");
         // This function is called when the new task form is submitted
         var text = event.target.text.value;
@@ -14,6 +15,6 @@ Template.journalItem.events({
             }
         });
 
-        return Router.go('journal');
+        Router.go('journal');
     }
 });
