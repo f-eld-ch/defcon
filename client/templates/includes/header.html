@@ -1,0 +1,16 @@
+<template name="header">
+    <nav class="navbar navbar-inverse navbar-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{pathFor 'journal'}}">DefCon</a>
+            </div>
+            <div class="navbar">
+                <ul class="nav navbar-nav">
+                    <li class="{{activeRouteClass 'journal'}}">
+                        <a href="{{pathFor 'journal'}}">Journal</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</template>
