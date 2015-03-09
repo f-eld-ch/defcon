@@ -201,3 +201,10 @@ body {
 .table-responsive {
     overflow-x: auto;
 }
+
+@media print {
+    .no-print,
+    .no-print * {
+        display: none !important;
+    }
+}

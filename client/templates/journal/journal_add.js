@@ -10,7 +10,7 @@ Template.journalAdd.events({
             text: text,
             sender: sender,
             receiver: receiver,
-            createdAt: new Date() // current time
+            createdAt: moment() // current time
         });
 
         // Clear form

@@ -12,3 +12,4 @@ mrt:moment
 iron:router
 sacha:spin
 twbs:bootstrap
+momentjs:moment

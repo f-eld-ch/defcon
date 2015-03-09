@@ -9,7 +9,7 @@
                     <th>Sender</th>
                     <th>Emfänger</th>
                     <th>Nachricht</th>
-                    <th></th>
+                    <th class="no-print"></th>
 
                 </tr>
             </thead>
@@ -21,8 +21,8 @@
                     <td>{{sender}}</td>
                     <td>{{receiver}}</td>
                     <td>{{text}}</td>
-                    <td>
-                        <a href="{{pathFor 'journalItem'}}" type="button" class="btn btn-default btn-xs">
+                    <td class="no-print">
+                        <a href="{{pathFor 'journalItem'}}" type="button" class="btn btn-primary btn-xs">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
                     </td>
