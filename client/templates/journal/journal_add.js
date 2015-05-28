@@ -6,11 +6,20 @@ Template.journalAdd.events({
         var sender = event.target.sender.value;
         var receiver = event.target.receiver.value;
 
-        Journal.insert({
+        var message = {
             text: text,
             sender: sender,
             receiver: receiver,
-            createdAt: new Date() // current time
+            incident: Router.current().params.incident,
+        }
+
+        Meteor.call("addJournalMessage", message, function(error, result){
+            if(error){
+                console.log("error", error);
+            }
+            if(result){
+                console.log("result", result);
+            }
         });
 
         // Clear form

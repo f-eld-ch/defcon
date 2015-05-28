@@ -1,9 +1,18 @@
-if (Journal.find().count() === 0) {
+if (Incidents.find().count === 0 || Journal.find().count() === 0) {
+    Incidents.insert({
+        createdAt: new Date(),
+        name: 'Test Event 1',
+        location: 'FooBar',
+    });
+
+    var incident = Incidents.findOne();
+
     Journal.insert({
         text: 'Ich bin Globi und wer bist du?',
         sender: 'Globi',
         receiver: 'Walterli',
         createdAt: new Date(),
+        incident: incident._id,
     });
 
     Journal.insert({
@@ -11,6 +20,7 @@ if (Journal.find().count() === 0) {
         sender: 'Moritz',
         receiver: 'Max',
         createdAt: new Date(),
+        incident: incident._id,
     });
 
     Journal.insert({
@@ -18,5 +28,6 @@ if (Journal.find().count() === 0) {
         sender: 'Max',
         receiver: 'Moritz',
         createdAt: new Date(),
+        incident: incident._id,
     });
 }
