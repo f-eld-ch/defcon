@@ -22,9 +22,9 @@ Meteor.publish('openIncidents', function() {
     // strictly speeking we would also have to check that
     // closedAt is in the past but that will be enforced on the
     // close method side
-    return Incidents.find({
-        closedAt: {
-            $exists: false
-        }
-    });
+    //return Incidents.find({closedAt: { $exists: false}});
+    var count = Incidents.find().count();
+    logger.debug('publishing open incidents ( current open incidents:', count, ')');
+    return Incidents.find();
+
 });

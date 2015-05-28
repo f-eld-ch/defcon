@@ -22,19 +22,21 @@ Template.journalItem.events({
             incident: Router.current().params.incident
         });
     },
+    'click .delete': function(e) {
+        e.preventDefault();
 
-    "delete .update-journal-entry": function(event) {
-        event.preventDefault();
-        var id = Router.current().params._id;
-        console.log("Delete journal entry", id);
+        if (confirm("Diese Nachricht löschen?")) {
+            var id = this._id;
+            console.log("Delete journal entry", id);
+            Meteor.call("deleteJournalMessage", id, function(error, result) {
+                if (error) {
+                    console.log("error", error);
+                }
+            });
+            Router.go('journal', {
+                incident: Router.current().params.incident
+            });
+        }
+    },
 
-        Meteor.call("deleteJournalMessage", id, function(error, result) {
-            if (error) {
-                console.log("error", error);
-            }
-        });
-        Router.go('journal', {
-            incident: Router.current().params.incident
-        });
-    }
 });
