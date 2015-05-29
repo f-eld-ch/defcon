@@ -1,7 +1,8 @@
 <template name="layout">
     {{> header}}
-    <div class="container">
-        {{> errors}}
+    {{> meteorErrors}}
+
+    <div class="container-fluid">
         <div id="main">
             {{> yield}}
         </div>

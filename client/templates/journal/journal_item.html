@@ -1,30 +1,34 @@
 <template name="journalItem">
-    <h3>Journal-Eintrag Bearbeiten</h3>
+    <div class="container-fluid journal no-print">
 
-    <form class="form-horizontal update-journal-entry">
-        <div class="form-group">
-            <label for="receiver" class="col-sm-1 control-label">Emfänger</label>
-            <div class="col-sm-11">
-                <input class="form-control" type="text" name="receiver" value="{{receiver}}" placeholder="An">
+        <h2>Journal-Eintrag Bearbeiten</h2>
+
+        <form class="form-horizontal update-journal-entry">
+            <div class="form-group">
+                <label for="receiver" class="col-sm-1 control-label">Emfänger</label>
+                <div class="col-sm-11">
+                    <input class="form-control" type="text" name="receiver" value="{{receiver}}" placeholder="An">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="sender" class="col-sm-1 control-label">Sender</label>
-            <div class="col-sm-11">
-                <input class="form-control" type="text" name="sender" value="{{sender}}" placeholder="Von">
+            <div class="form-group">
+                <label for="sender" class="col-sm-1 control-label">Sender</label>
+                <div class="col-sm-11">
+                    <input class="form-control" type="text" name="sender" value="{{sender}}" placeholder="Von">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="text" class="col-sm-1 control-label">Nachricht</label>
-            <div class="col-sm-11">
-                <textarea class="form-control" name="text" rows="5" placeholder="Nachricht">{{text}}</textarea>
+            <div class="form-group">
+                <label for="text" class="col-sm-1 control-label">Nachricht</label>
+                <div class="col-sm-11">
+                    <textarea class="form-control" name="text" rows="5" placeholder="Nachricht">{{text}}</textarea>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-11">
-                <button type="submit" class="btn btn-primary">Ändern</button>
-                <a class="btn btn-danger delete" href="#">Löschen</a>
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <button type="submit" class="btn btn-primary">Ändern</button>
+                    <a class="btn btn-danger delete" href="#">Löschen</a>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </template>
