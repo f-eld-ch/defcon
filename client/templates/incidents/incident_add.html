@@ -1,23 +1,27 @@
 <template name="incidentAdd">
-    <h3>Ereignis bearbeiten</h3>
+    <div class="container-fluid journal no-print">
 
-    <form class="form-horizontal add-incident-entry">
-        <div class="form-group">
-            <label for="receiver" class="col-sm-1 control-label">Name</label>
-            <div class="col-sm-11">
-                <input class="form-control" type="text" name="name" value="{{name}}" placeholder="Ereignisname">
+        <h2>Ereignis hinzufügen</h2>
+
+        <form class="form-horizontal add-incident-entry">
+            <div class="form-group">
+                <label for="receiver" class="col-sm-1 control-label">Name</label>
+                <div class="col-sm-11">
+                    <input class="form-control" type="text" name="name" value="{{name}}" placeholder="Ereignisname">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="sender" class="col-sm-1 control-label">Ort</label>
-            <div class="col-sm-11">
-                <input class="form-control" type="text" name="location" value="{{location}}" placeholder="Standort">
+            <div class="form-group">
+                <label for="sender" class="col-sm-1 control-label">Ort</label>
+                <div class="col-sm-11">
+                    <input class="form-control" type="text" name="location" value="{{location}}" placeholder="Standort">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-11">
-                <button type="submit" class="btn btn-primary">Hinzufügen</button>
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <button type="submit" class="btn btn-primary">Hinzufügen</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </template>

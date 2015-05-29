@@ -13,11 +13,13 @@ Template.incidentEdit.events({
 
         Meteor.call("updateIncident", incident, function(error, result) {
             if (error) {
-                console.log("error", error);
+                return Errors.throw(error.reason);
+            }
+            else {
+                Router.go('incident');
             }
         });
 
-        Router.go('incident');
     },
     'click .close-incident': function(e) {
         e.preventDefault();
@@ -27,10 +29,13 @@ Template.incidentEdit.events({
             console.log("Closing incident", id);
             Meteor.call("closeIncident", id, function(error, result) {
                 if (error) {
-                    console.log("error", error);
+                    return Errors.throw(error.reason);
+                }
+                else {
+                    Router.go('incident');
                 }
             });
-            Router.go('incident');
+
         }
     },
 });

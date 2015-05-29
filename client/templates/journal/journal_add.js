@@ -1,5 +1,6 @@
 Template.journalAdd.events({
     "submit .add-journal-entry": function (event) {
+        event.preventDefault();
         console.log("Add journal entry");
         // This function is called when the new task form is submitted
         var text = event.target.text.value;
@@ -15,20 +16,18 @@ Template.journalAdd.events({
 
         Meteor.call("addJournalMessage", message, function(error, result){
             if(error){
-                console.log("error", error);
+                return Errors.throw(error.reason);
             }
-            if(result){
-                console.log("result", result);
+            else {
+                // Clear form
+                event.target.sender.value = "";
+                event.target.receiver.value = "";
+                event.target.text.value = "";
+
+
+                // Prevent default form submit
+                return false;
             }
         });
-
-        // Clear form
-        event.target.sender.value = "";
-        event.target.receiver.value = "";
-        event.target.text.value = "";
-
-
-        // Prevent default form submit
-        return false;
     }
 });

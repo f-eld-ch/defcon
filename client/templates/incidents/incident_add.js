@@ -11,10 +11,12 @@ Template.incidentAdd.events({
 
         Meteor.call("addIncident", incident, function(error, result) {
             if (error) {
-                console.log("error", error);
+                return Errors.throw(error.reason);
+            }
+            else {
+                Router.go('incident');
             }
         });
 
-        Router.go('incident');
     },
 });
