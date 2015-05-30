@@ -2,6 +2,10 @@
     padding-top: 70px;
 }
 
+.pre {
+  white-space: pre;
+}
+
 .grid-block,
 .main,
 .journal,
