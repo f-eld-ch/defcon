@@ -217,3 +217,9 @@ body {
         display: none !important;
     }
 }
+
+.table {
+     max-width: none;
+     table-layout: fixed;
+     word-wrap: break-word;
+ }
