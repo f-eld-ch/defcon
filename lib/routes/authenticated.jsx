@@ -31,7 +31,7 @@ authenticatedRoutes.route('/incident/:incident/journal', {
     name: 'journal',
     action(params) {
         ReactLayout.render(Default, {
-            yield: <Journal incident={params.incident} />
+            yield: <JournalManager incident={params.incident} />
         });
     }
 });

@@ -1,6 +1,6 @@
 const publicRedirect = () => {
     if ( Meteor.userId() ) {
-        FlowRouter.go( 'incidents' );
+        FlowRouter.go( 'incident' );
     }
 };
 

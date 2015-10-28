@@ -1,13 +1,10 @@
 Login = React.createClass({
-    componentDidMount() {
-        console.log( "cdm" );
-    },
     handleSubmit(event) {
         event.preventDefault();
         let email    = $( '[name="emailAddress"]' ).val(),
             password = $( '[name="password"]' ).val();
 
-        Accounts.loginWithPassword( email, password, ( error ) => {
+        Meteor.loginWithPassword( email, password, ( error ) => {
             if ( error ) {
                 Bert.alert( error.reason, 'warning' );
             } else {
