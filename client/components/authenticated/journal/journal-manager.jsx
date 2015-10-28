@@ -12,7 +12,10 @@ JournalManager = React.createClass({
     },
     render() {
         return (
-            <h3>Journal for {this.props.incident}</h3>
+            //<JournalEditor new=true/>
+            <div class="container-fluid journal">
+                <JournalTable journal={this.data.journal} />
+            </div>
         );
     }
 });

@@ -42,19 +42,19 @@ IncidentEditor = React.createClass({
                         <div className="form-group">
                             <label htmlFor="receiver" className="col-sm-1 control-label">Name</label>
                             <div className="col-sm-11">
-                                <input className="form-control" type="text" name="name" value= placeholder="{this.data.incident.name}"/>
+                                <input className="form-control" type="text" name="name" value={this.data.incident.name} placeholder="Ereignisname"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="sender" className="col-sm-1 control-label">Ort</label>
                             <div className="col-sm-11">
-                                <input className="form-control" type="text" name="location" value="" placeholder="{this.data.incident.location}"/>
+                                <input className="form-control" type="text" name="location" value={this.data.incident.location} placeholder="Standort"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="text" className="col-sm-1 control-label">Eröffnet</label>
                             <div className="col-sm-11">
-                                <input className="form-control" type="text" name="createdAt" value="" placeholder={this.getDate(this.data.incident.createdAt)} />
+                                <input className="form-control" type="text" name="createdAt" value={this.getDate(this.data.incident.createdAt)} placeholder=""/>
                             </div>
                         </div>
                         <div className="form-group">
