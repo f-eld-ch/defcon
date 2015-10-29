@@ -1,10 +1,10 @@
 AppHeader = React.createClass({
     brandLink() {
         if ( !Meteor.loggingIn() && !Meteor.userId() ) {
-            return FlowRouter.path( 'login' );
+            return FlowHelpers.pathFor('login');
         }
 
-        return FlowRouter.path( 'index' );
+        return FlowHelpers.pathFor('incident');
     },
     navigationItems() {
         if ( !Meteor.loggingIn() && Meteor.user() ) {
@@ -15,16 +15,10 @@ AppHeader = React.createClass({
     },
     render() {
         return (
-            <nav
-                className="navbar navbar-default"
-                role="navigation">
+            <nav className="navbar navbar-default" role="navigation">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <button
-                            type="button"
-                            className="navbar-toggle collapsed"
-                            data-toggle="collapse"
-                            data-target="#navbar-collapse">
+                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
                             <span className="sr-only">
                                 Toggle navigation
                             </span>

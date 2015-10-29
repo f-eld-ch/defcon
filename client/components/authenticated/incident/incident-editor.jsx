@@ -76,11 +76,11 @@ IncidentEditor = React.createClass({
     renderCloseButton: function() {
         if (!this.props.incident.closedAt) {
             return (
-                <button type="close-incident" className="btn btn-warning close-incident" onClick={this.toggleClosed}>Beenden</button>
+                <button type="close-incident" className="btn btn-warning close-incident" onClick={this.toggleClosed}><i className="fa fa-times"> Beenden</i></button>
             );
         } else {
             return (
-                <button type="close-incident" className="btn btn-info close-incident" onClick={this.toggleClosed}>Neu Öffnen</button>
+                <button type="close-incident" className="btn btn-info close-incident" onClick={this.toggleClosed}><i className="fa fa-external-link"> Neu Öffnen</i></button>
             );
         }
     },
@@ -124,28 +124,28 @@ IncidentEditor = React.createClass({
                     <div className="incident-editor">
                         <form className="form-horizontal update-incident-entry">
                             <div className="form-group">
-                                <label htmlFor="receiver" className="col-sm-1 control-label">Name</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="receiver" className="col-md-1 control-label">Name</label>
+                                <div className="col-md-11">
                                     <input className="form-control" type="text" ref="name" valueLink={this.linkState('name')} placeholder="Ereignisname"/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="sender" className="col-sm-1 control-label">Ort</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="sender" className="col-md-1 control-label">Ort</label>
+                                <div className="col-md-11">
                                     <input className="form-control" type="text" ref="location"  valueLink={this.linkState('location')} placeholder="Standort"/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="text" className="col-sm-1 control-label">Eröffnet</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="text" className="col-md-1 control-label">Eröffnet</label>
+                                <div className="col-md-11">
                                     <input className="form-control" type="text" ref="createdAt" valueLink={this.linkState('createdAt')} placeholder=""/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-sm-offset-1 col-sm-2">
-                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Speichern</button>
+                                <div className="col-md-offset-1 col-md-2">
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-floppy-o"> Speichern</i></button>
                                 </div>
-                                <div className="col-sm-2">
+                                <div className="col-md-2">
                                     {this.renderCloseButton()}
                                 </div>
                             </div>
@@ -160,28 +160,28 @@ IncidentEditor = React.createClass({
                     <div className="incident-editor">
                         <form className="form-horizontal add-incident-entry">
                             <div className="form-group">
-                                <label htmlFor="receiver" className="col-sm-1 control-label">Name</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="receiver" className="col-md-1 control-label">Name</label>
+                                <div className="col-md-11">
                                     <input className="form-control" type="text" ref="name" valueLink={this.linkState('name')} placeholder="Ereignisname"/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="sender" className="col-sm-1 control-label">Ort</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="sender" className="col-md-1 control-label">Ort</label>
+                                <div className="col-md-11">
                                     <input className="form-control" type="text" ref="location"  valueLink={this.linkState('location')} placeholder="Standort"/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="text" className="col-sm-1 control-label">Eröffnet</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="text" className="col-md-1 control-label">Eröffnet</label>
+                                <div className="col-md-11">
                                     <input className="form-control" type="text" ref="createdAt" defaultValue={this.getDate(new Date())} placeholder=""/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-sm-offset-1 col-sm-11">
-                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Speichern</button>
+                                <div className="col-md-offset-1 col-md-11">
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-floppy-o"> Speichern</i></button>
                                 </div>
-                                <div className="col-sm-offset-1 col-sm-11"></div>
+                                <div className="col-md-offset-1 col-md-11"></div>
                             </div>
                         </form>
                     </div>
