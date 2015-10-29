@@ -4,16 +4,12 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-insecure
 accounts-password
 accounts-ui
 mrt:moment
-iron:router
 sacha:spin
 twbs:bootstrap
 momentjs:moment
-meteorhacks:kadira
-votercircle:winston
 tmeasday:errors
 fortawesome:fontawesome
 standard-minifiers
@@ -30,5 +26,11 @@ random
 ejson
 spacebars
 check
-velocity:html-reporter
-sanjo:jasmine
+react
+kadira:react-layout
+kadira:flow-router
+votercircle:winston
+themeteorchef:bert
+ecmascript
+dpraburaj:react-spin
+meteorhacks:kadira
