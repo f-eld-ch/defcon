@@ -106,7 +106,6 @@ IncidentEditor = React.createClass({
         event.preventDefault();
         let date = this.state.createdAt;
         if (!moment(date,'DD.MM.YYYY HH:mm').isValid()){
-            console.log(date);
             Bert.alert("Datum ist nicht gültig", 'danger');
             return;
         }

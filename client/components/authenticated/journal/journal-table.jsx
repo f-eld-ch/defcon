@@ -3,20 +3,20 @@ JournalTable = React.createClass({
     propTypes: {
         incident: React.PropTypes.string.isRequired,
     },
-    getMeteorData() {
+    getMeteorData: function() {
         let journalSubscription =  Meteor.subscribe('journal',this.props.incident);
         return {
             subscriptions: [journalSubscription],
             isDataReady: journalSubscription.ready(),
-            journal: Journal.find({incident: this.props.incident},{sort: { createdAt: -1}}).fetch()
+            messages: Journal.find({incident: this.props.incident},{sort: { createdAt: -1}}).fetch()
         };
     },
-    renderJournalEntries() {
-        return this.data.journal.map((journal) => {
-            return <JournalEntry key={journal._id} journal={journal} />;
+    renderJournalEntries: function() {
+        return this.data.messages.map((message) => {
+            return <JournalTableEntry key={message._id} message={message} />;
         });
     },
-    render() {
+    render: function() {
         return (
             <div>
             <h2>Journal</h2>

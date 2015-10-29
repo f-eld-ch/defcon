@@ -1,24 +1,24 @@
-JournalEntry = React.createClass({
+JournalTableEntry = React.createClass({
     propTypes: {
-        journal: React.PropTypes.object.isRequired,
+        message: React.PropTypes.object.isRequired,
     },
-    getDate(date) {
+    getDate: function(date) {
         if (!date) {
             return;
         }
         return moment(date).format('DD.MM.YYYY HH:mm');
     },
-    render() {
+    render: function() {
         return (
             <tr>
-                <td>{this.getDate(this.props.journal.createdAt)}</td>
-                <td>{this.props.journal.sender}</td>
-                <td>{this.props.journal.receiver}</td>
-                <td><span className="pre">{this.props.journal.text}</span></td>
+                <td>{this.getDate(this.props.message.createdAt)}</td>
+                <td>{this.props.message.sender}</td>
+                <td>{this.props.message.receiver}</td>
+                <td><span className="pre">{this.props.message.text}</span></td>
 
 
                 <td className="no-print">
-                    <a href={FlowHelpers.pathFor('journalEditor', { journal: this.props.journal._id } )}  type="button" className="btn btn-primary btn-xs">
+                    <a href={FlowHelpers.pathFor('journalEditor', { incident: this.props.message.incident, message: this.props.message._id } )}  type="button" className="btn btn-primary btn-xs">
                         <span className="glyphicon glyphicon-edit"></span>
                     </a>
                 </td>
