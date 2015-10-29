@@ -1,5 +1,5 @@
 JournalTable = React.createClass({
-    mixins: [ ReactMeteorData, SpinnerMixin],
+    mixins: [ ReactMeteorData ],
     propTypes: {
         incident: React.PropTypes.string.isRequired,
     },
@@ -7,6 +7,7 @@ JournalTable = React.createClass({
         let journalSubscription =  Meteor.subscribe('journal',this.props.incident);
         return {
             subscriptions: [journalSubscription],
+            isDataReady: journalSubscription.ready(),
             journal: Journal.find({incident: this.props.incident},{sort: { createdAt: -1}}).fetch()
         };
     },
