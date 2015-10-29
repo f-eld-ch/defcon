@@ -45,7 +45,7 @@ IncidentEditor = React.createClass({
         if (this.props.incident) {
             Meteor.call("updateIncident", this.props.incident._id, incident, function(err) {
                 if (err) {
-                    Bert.alert("Update Failed: " + err.reason);
+                    Bert.alert("Update des Ereignisses ist gescheitert: " + err.reason, 'danger');
                     return;
                 }
                 FlowRouter.go('incident');
@@ -53,7 +53,7 @@ IncidentEditor = React.createClass({
         } else {
             Meteor.call("addIncident", incident, function(err) {
                     if (err) {
-                        Bert.alert("Adding new Incident failed: " + err.reason);
+                        Bert.alert("Erstellen des Ereignis ist gescheitert: " + err.reason, 'danger');
                         return;
                     }
                     FlowRouter.go('incident');

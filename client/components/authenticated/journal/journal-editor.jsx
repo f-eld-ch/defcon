@@ -43,7 +43,7 @@ JournalEditor = React.createClass({
             sender: '',
             receiver: '',
             text: '',
-            createdAt: this.getDate(new Date()),
+            createdAt: null,
         };
     },
     saveMessage: function(message) {
@@ -72,7 +72,7 @@ JournalEditor = React.createClass({
                     sender: '',
                     receiver: '',
                     text: '',
-                    createdAt: editor.getDate(new Date()),
+                    createdAt: null,
                 });
             });
         }
@@ -81,7 +81,7 @@ JournalEditor = React.createClass({
         if (!date) {
             return;
         }
-        return moment(date).format('DD.MM.YYYY HH:mm');
+        return moment(date).format('DD.MM.YYYY HH:mm:ss');
     },
     handleDelete: function(event) {
         event.preventDefault();
@@ -106,14 +106,14 @@ JournalEditor = React.createClass({
                 sender: '',
                 receiver: '',
                 text: '',
-                createdAt: this.getDate(new Date()),
+                createdAt: null,
             });
         }
     },
     handleSubmit: function(event) {
         event.preventDefault();
         let date = this.state.createdAt;
-        if (!moment(date,'DD.MM.YYYY HH:mm').isValid()){
+        if (date && !moment(date,'DD.MM.YYYY HH:mm:ss').isValid()){
             Bert.alert("Datum ist nicht gültig", 'danger');
             return;
         }
@@ -122,7 +122,7 @@ JournalEditor = React.createClass({
             sender: this.state.sender,
             receiver: this.state.receiver,
             text: this.state.text,
-            createdAt: moment(date,'DD.MM.YYYY HH:mm').toDate(),
+            createdAt: date ? moment(date,'DD.MM.YYYY HH:mm:ss').toDate() : new Date(),
         };
         this.saveMessage(message);
         this.refs.receiver.getDOMNode().focus();
@@ -197,7 +197,7 @@ JournalEditor = React.createClass({
                             <div className="form-group">
                                 <label htmlFor="text" className="col-sm-1 control-label">Datum</label>
                                 <div className="col-sm-11">
-                                    <input className="form-control" type="text" ref="createdAt" valueLink={this.linkState('createdAt')} placeholder=""/>
+                                    <input className="form-control" type="text" ref="createdAt" valueLink={this.linkState('createdAt')} placeholder={this.getDate(new Date)}/>
                                 </div>
                             </div>
                             <div className="form-group">

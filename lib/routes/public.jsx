@@ -9,13 +9,6 @@ const publicRoutes = FlowRouter.group({
     triggersEnter: [ publicRedirect ]
 });
 
-publicRoutes.route( '/signup', {
-    name: 'signup',
-    action() {
-        ReactLayout.render( Default, { yield: <Signup /> } );
-    }
-});
-
 publicRoutes.route( '/login', {
     name: 'login',
     action() {
