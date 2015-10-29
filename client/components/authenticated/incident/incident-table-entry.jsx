@@ -1,5 +1,4 @@
-// Task component - represents a single todo item
-IncidentEntry = React.createClass({
+IncidentTableEntry = React.createClass({
     propTypes: {
         incident: React.PropTypes.object.isRequired,
     },
@@ -20,8 +19,7 @@ IncidentEntry = React.createClass({
     render() {
         // Give incidents a different className when they are closed,
         // so that we can style them nicely in CSS
-        // Add "closed"
-        const incidentClassName = (this.props.incident.closedAt ? "closed" : "");
+        const incidentClassName = (this.props.incident.closedAt ? "active" : "");
 
         return (
             <tr className={incidentClassName}>

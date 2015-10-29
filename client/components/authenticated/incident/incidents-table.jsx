@@ -29,7 +29,7 @@ IncidentsTable = React.createClass({
     },
     renderIncidents() {
         return this.data.incidents.map((incident) => {
-            return <IncidentEntry key={incident._id} incident={incident} />;
+            return <IncidentTableEntry key={incident._id} incident={incident} />;
         });
     },
     render() {
