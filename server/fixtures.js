@@ -31,3 +31,12 @@ if (Incidents.find().count === 0 || Journal.find().count() === 0) {
         incident: incident._id,
     });
 }
+
+if (Meteor.users.find().count() === 0) {
+    console.log("creating user account");
+    Accounts.createUser({
+        username: Meteor.settings.admin.email,
+        email: Meteor.settings.admin.email,
+        password: Meteor.settings.admin.password,
+    });
+}

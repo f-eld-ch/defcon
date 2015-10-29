@@ -30,7 +30,6 @@ Login = React.createClass({
                             <input type="submit" className="btn btn-success" value="Login"/>
                         </div>
                     </form>
-                    <p>Noch kein Account? <a href="/signup">Sign Up</a>.</p>
                 </div>
             </div>
         );
