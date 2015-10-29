@@ -13,18 +13,11 @@ Meteor.publish('journalItem', function(id) {
 });
 
 Meteor.publish('allIncidents', function() {
+    console.log("all incident publication");
     return Incidents.find();
 });
 
-Meteor.publish('openIncidents', function() {
-
-    // only return the incidents which dont have a closedAt set
-    // strictly speeking we would also have to check that
-    // closedAt is in the past but that will be enforced on the
-    // close method side
-    //return Incidents.find({closedAt: { $exists: false}});
-    var count = Incidents.find().count();
-    logger.debug('publishing open incidents ( current open incidents:', count, ')');
-    return Incidents.find();
-
+Meteor.publish('incident', function(id) {
+    console.log("only one incident publication");
+    return Incidents.find({_id: id});
 });

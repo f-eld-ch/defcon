@@ -10,7 +10,7 @@ AuthenticatedNavigation = React.createClass({
                 <ul className="nav navbar-nav">
                     <li className="dropdown">
                         <a
-                            href="#"
+                            href={FlowHelpers.pathFor( 'incident' )}
                             className="dropdown-toggle"
                             data-toggle="dropdown"
                             role="button"

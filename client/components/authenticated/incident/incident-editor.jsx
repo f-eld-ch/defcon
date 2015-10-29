@@ -1,79 +1,197 @@
+IncidentEdit = React.createClass({
+    mixins: [ReactMeteorData],
+    getMeteorData() {
+        let incidentSubscription = Meteor.subscribe('incident',this.props.incident);
+        return {
+            subscriptions: [incidentSubscription],
+            incident: Incidents.findOne({
+                _id: this.props.incident
+            })
+        };
+    },
+    propTypes: {
+        incident: React.PropTypes.string
+    },
+    render: function() {
+        return (
+            <IncidentEditor incident={this.data.incident}/>
+        );
+    }
+});
+
 IncidentEditor = React.createClass({
-    mixins: [ReactMeteorData, SpinnerMixin],
+    mixins: [React.addons.LinkedStateMixin],
 
     propTypes: {
-        id: React.PropTypes.string,
+        incident: React.PropTypes.object
     },
-    getMeteorData() {
-        if (this.props.id) {
-            let allIncidents = Meteor.subscribe('allIncidents');
+    getInitialState: function() {
+        if (this.props.incident){
             return {
-                subscriptions: [allIncidents],
-                incident: Incidents.findOne({
-                    _id: this.props.id
-                })
+                id: this.props.incident._id,
+                name: this.props.incident.name,
+                location: this.props.incident.location,
+                createdAt: this.getDate(this.props.incident.createdAt),
             };
         }
-        else {
-            console.log("no data required");
-            return {
-                subscriptions: [],
-                incident: null,
-            };
-        }
+        return {
+            id: '',
+            name: '',
+            location: '',
+            createdAt: this.getDate(new Date),
+        };
     },
-    toggleClosed() {
-        if (this.props.id) {
-            Meteor.call("toggleClosedIncident", this.data.incident._id);
-        }
-    },
-    saveIncident() {
-        if (this.props.id) {
-            Meteor.call("updateIncident", this.data.incident);
+    saveIncident: function(incident) {
+        if (this.props.incident) {
+            Meteor.call("updateIncident", this.props.incident._id, incident, function(err) {
+                if (err) {
+                    Bert.alert("Update Failed: " + err.reason);
+                    return;
+                }
+                // all good go to the incidents again
+                React.findDOMNode(this.refs.name)
+                    .value = "";
+                React.findDOMNode(this.refs.location)
+                    .value = "";
+                React.findDOMNode(this.refs.createdAt)
+                    .value = "";
+                FlowRouter.go('incident');
+            });
         } else {
-            Meteor.call("addIncident", this.data.incident);
+            Meteor.call("addIncident", incident, function(err) {
+                    if (err) {
+                        Bert.alert("Adding new Incident failed: " + err.reason);
+                        return;
+                    }
+                    // all good go to the incidents again
+                    React.findDOMNode(this.refs.name)
+                        .value = "";
+                    React.findDOMNode(this.refs.location)
+                        .value = "";
+                    React.findDOMNode(this.refs.createdAt)
+                        .value = "";
+                    FlowRouter.go('incident');
+            });
         }
     },
-    render() {
-        if (this.props.id){
+    getDate: function(date) {
+        if (!date) {
+            return;
+        }
+        return moment(date).format('DD.MM.YYYY HH:mm');
+    },
+    toggleClosed: function(event) {
+        event.preventDefault();
+        if (this.props.incident) {
+            Meteor.call("toggleClosedIncident", this.props.incident._id);
+        }
+        FlowRouter.go('incident');
+    },
+    renderCloseButton: function() {
+        if (!this.props.incident.closedAt) {
+            return (
+                <button type="close-incident" className="btn btn-warning close-incident" onClick={this.toggleClosed}>Beenden</button>
+            );
+        } else {
+            return (
+                <button type="close-incident" className="btn btn-info close-incident" onClick={this.toggleClosed}>Neu Öffnen</button>
+            );
+        }
+    },
+    componentWillReceiveProps: function(nextProps) {
+        if (nextProps.incident){
+            this.setState({errors: {},
+                id: nextProps.incident._id,
+                name: nextProps.incident.name,
+                location: nextProps.incident.location,
+                createdAt: this.getDate(nextProps.incident.createdAt),
+            });
+        }
+    },
+    handleSubmit: function(event) {
+        event.preventDefault();
+        let date = React.findDOMNode(this.refs.createdAt).value.trim();
+        if (!moment(date,'DD.MM.YYYY HH:mm').isValid()){
+            console.log(date);
+            Bert.alert("Datum ist nicht gültig", 'danger');
+            return;
+        }
+        let incident = {
+            name: React.findDOMNode(this.refs.name).value.trim(),
+            location: React.findDOMNode(this.refs.location).value.trim(),
+            createdAt: moment(date,'DD.MM.YYYY HH:mm').toDate(),
+        };
+        this.saveIncident(incident);
+    },
+    render: function() {
+        if (this.props.incident) {
             return (
                 <div className="incident-editor">
                     <form className="form-horizontal update-incident-entry">
                         <div className="form-group">
                             <label htmlFor="receiver" className="col-sm-1 control-label">Name</label>
                             <div className="col-sm-11">
-                                <input className="form-control" type="text" name="name" value={this.data.incident.name} placeholder="Ereignisname"/>
+                                <input className="form-control" type="text" ref="name" valueLink={this.linkState('name')} placeholder="Ereignisname"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="sender" className="col-sm-1 control-label">Ort</label>
                             <div className="col-sm-11">
-                                <input className="form-control" type="text" name="location" value={this.data.incident.location} placeholder="Standort"/>
+                                <input className="form-control" type="text" ref="location"  valueLink={this.linkState('location')} placeholder="Standort"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="text" className="col-sm-1 control-label">Eröffnet</label>
                             <div className="col-sm-11">
-                                <input className="form-control" type="text" name="createdAt" value={this.getDate(this.data.incident.createdAt)} placeholder=""/>
+                                <input className="form-control" type="text" ref="createdAt" valueLink={this.linkState('createdAt')} placeholder=""/>
                             </div>
                         </div>
                         <div className="form-group">
-                            <div className="col-sm-offset-1 col-sm-11">
-                                <button type="submit" className="btn btn-primary">Ändern</button>
-                                <button type="close-incident" className="btn btn-warning close-incident">Beenden</button>
+                            <div className="col-sm-offset-1 col-sm-2">
+                                <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Speichern</button>
                             </div>
-                            <div className="col-sm-offset-1 col-sm-11"></div>
+                            <div className="col-sm-2">
+
+                                {this.renderCloseButton()}
+                            </div>
                         </div>
                     </form>
                 </div>
             );
+        } else {
+            return (
+                <div>
+                    <h2>Neues Ereignis</h2>
+                    <div className="incident-editor">
+                        <form className="form-horizontal add-incident-entry">
+                            <div className="form-group">
+                                <label htmlFor="receiver" className="col-sm-1 control-label">Name</label>
+                                <div className="col-sm-11">
+                                    <input className="form-control" type="text" ref="name" valueLink={this.linkState('name')} placeholder="Ereignisname"/>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="sender" className="col-sm-1 control-label">Ort</label>
+                                <div className="col-sm-11">
+                                    <input className="form-control" type="text" ref="location"  valueLink={this.linkState('location')} placeholder="Standort"/>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="text" className="col-sm-1 control-label">Eröffnet</label>
+                                <div className="col-sm-11">
+                                    <input className="form-control" type="text" ref="createdAt" defaultValue={this.getDate(new Date())} placeholder=""/>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="col-sm-offset-1 col-sm-11">
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Speichern</button>
+                                </div>
+                                <div className="col-sm-offset-1 col-sm-11"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            );
         }
-        else {
-            return(
-                <h3>New Incident</h3>
-            )
-        }
-
-
     }
 });

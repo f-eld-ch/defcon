@@ -13,7 +13,8 @@ authenticatedRoutes.route('/incident', {
     name: 'incident',
     action() {
         ReactLayout.render(Default, {
-            yield: <IncidentsManager />
+            yield:  <IncidentEdit />,
+            bottom: <IncidentsTable />
         });
     }
 });
@@ -22,7 +23,8 @@ authenticatedRoutes.route('/incident/:incident', {
     name: 'incidentEditor',
     action(params) {
         ReactLayout.render(Default, {
-            yield: <IncidentEditor id={params.incident} />
+            yield: <IncidentEdit incident={params.incident} />,
+            bottom: <IncidentsTable />
         });
     }
 });
