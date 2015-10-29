@@ -48,13 +48,6 @@ IncidentEditor = React.createClass({
                     Bert.alert("Update Failed: " + err.reason);
                     return;
                 }
-                // all good go to the incidents again
-                React.findDOMNode(this.refs.name)
-                    .value = "";
-                React.findDOMNode(this.refs.location)
-                    .value = "";
-                React.findDOMNode(this.refs.createdAt)
-                    .value = "";
                 FlowRouter.go('incident');
             });
         } else {
@@ -63,13 +56,6 @@ IncidentEditor = React.createClass({
                         Bert.alert("Adding new Incident failed: " + err.reason);
                         return;
                     }
-                    // all good go to the incidents again
-                    React.findDOMNode(this.refs.name)
-                        .value = "";
-                    React.findDOMNode(this.refs.location)
-                        .value = "";
-                    React.findDOMNode(this.refs.createdAt)
-                        .value = "";
                     FlowRouter.go('incident');
             });
         }
@@ -107,18 +93,26 @@ IncidentEditor = React.createClass({
                 createdAt: this.getDate(nextProps.incident.createdAt),
             });
         }
+        else {
+            this.setState({errors: {},
+                id: '',
+                name: '',
+                location: '',
+                createdAt: this.getDate(new Date),
+            });
+        }
     },
     handleSubmit: function(event) {
         event.preventDefault();
-        let date = React.findDOMNode(this.refs.createdAt).value.trim();
+        let date = this.state.createdAt;
         if (!moment(date,'DD.MM.YYYY HH:mm').isValid()){
             console.log(date);
             Bert.alert("Datum ist nicht gültig", 'danger');
             return;
         }
         let incident = {
-            name: React.findDOMNode(this.refs.name).value.trim(),
-            location: React.findDOMNode(this.refs.location).value.trim(),
+            name: this.state.name,
+            location: this.state.location,
             createdAt: moment(date,'DD.MM.YYYY HH:mm').toDate(),
         };
         this.saveIncident(incident);
@@ -126,36 +120,38 @@ IncidentEditor = React.createClass({
     render: function() {
         if (this.props.incident) {
             return (
-                <div className="incident-editor">
-                    <form className="form-horizontal update-incident-entry">
-                        <div className="form-group">
-                            <label htmlFor="receiver" className="col-sm-1 control-label">Name</label>
-                            <div className="col-sm-11">
-                                <input className="form-control" type="text" ref="name" valueLink={this.linkState('name')} placeholder="Ereignisname"/>
+                <div>
+                    <h2>Ereignis bearbeiten</h2>
+                    <div className="incident-editor">
+                        <form className="form-horizontal update-incident-entry">
+                            <div className="form-group">
+                                <label htmlFor="receiver" className="col-sm-1 control-label">Name</label>
+                                <div className="col-sm-11">
+                                    <input className="form-control" type="text" ref="name" valueLink={this.linkState('name')} placeholder="Ereignisname"/>
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="sender" className="col-sm-1 control-label">Ort</label>
-                            <div className="col-sm-11">
-                                <input className="form-control" type="text" ref="location"  valueLink={this.linkState('location')} placeholder="Standort"/>
+                            <div className="form-group">
+                                <label htmlFor="sender" className="col-sm-1 control-label">Ort</label>
+                                <div className="col-sm-11">
+                                    <input className="form-control" type="text" ref="location"  valueLink={this.linkState('location')} placeholder="Standort"/>
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="text" className="col-sm-1 control-label">Eröffnet</label>
-                            <div className="col-sm-11">
-                                <input className="form-control" type="text" ref="createdAt" valueLink={this.linkState('createdAt')} placeholder=""/>
+                            <div className="form-group">
+                                <label htmlFor="text" className="col-sm-1 control-label">Eröffnet</label>
+                                <div className="col-sm-11">
+                                    <input className="form-control" type="text" ref="createdAt" valueLink={this.linkState('createdAt')} placeholder=""/>
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <div className="col-sm-offset-1 col-sm-2">
-                                <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Speichern</button>
+                            <div className="form-group">
+                                <div className="col-sm-offset-1 col-sm-2">
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Speichern</button>
+                                </div>
+                                <div className="col-sm-2">
+                                    {this.renderCloseButton()}
+                                </div>
                             </div>
-                            <div className="col-sm-2">
-
-                                {this.renderCloseButton()}
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             );
         } else {
