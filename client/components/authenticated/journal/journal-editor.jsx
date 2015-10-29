@@ -129,7 +129,7 @@ JournalEditor = React.createClass({
     render: function() {
         if (this.props.message) {
             return (
-                <div>
+                <div className="hidden-print">
                     <h2>Journal-Eintrag bearbeiten</h2>
                     <div className="incident-editor">
                         <form className="form-horizontal update-journal-entry">
@@ -171,7 +171,7 @@ JournalEditor = React.createClass({
             );
         } else {
             return (
-                <div>
+                <div className="hidden-print">
                     <h2>Neuer Journal-Eintrag</h2>
                     <div className="journal-editor">
                         <form className="form-horizontal add-journal-entry">
