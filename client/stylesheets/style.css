@@ -16,10 +16,6 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
 
-.navbar {
-    margin-bottom: 0px;
-}
-
 textarea {
     resize: vertical;
 }
@@ -27,6 +23,7 @@ textarea {
 body {
     background: #eee;
     color: #666666;
+    padding-top: 60px;
 }
 
 #main {
