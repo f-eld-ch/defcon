@@ -2,36 +2,27 @@ AuthenticatedNavigation = React.createClass({
     currentUserEmail() {
         return Meteor.user().emails[0].address;
     },
+    renderIncidentMenu: function() {
+        if (Session.get('incident')){
+            return (
+                <li className={FlowHelpers.currentRoute( 'journal' )}>
+                    <a href={FlowHelpers.pathFor( 'journal', {incident: Session.get('incident')} )}>
+                        <i className="fa fa-bars"> Journal</i>
+                    </a>
+                </li>
+            );
+        }
+    },
     render() {
         return (
-            <div
-                id="navbar-collapse"
-                className="collapse navbar-collapse">
+            <div className="collapse navbar-collapse">
                 <ul className="nav navbar-nav">
-                    <li className="dropdown">
-                        <a
-                            href={FlowHelpers.pathFor( 'incident' )}
-                            className="dropdown-toggle"
-                            data-toggle="dropdown"
-                            role="button"
-                            aria-expanded="false">
-                            <i className="glyphicon glyphicon-fire"> Ereignisse</i>
+                    <li className={FlowHelpers.currentRoute( 'incident' )}>
+                        <a href={FlowHelpers.pathFor( 'incident' )}>
+                            <i className="fa fa-ambulance"> Ereignisse</i>
                         </a>
-                        <ul className="dropdown-menu">
-                            <li className={FlowHelpers.currentRoute( 'incident' )}>
-                                <a href={FlowHelpers.pathFor( 'incident' )}>
-                                    <i className="glyphicon glyphicon-tower">
-                                        Aktuelle Ereignisse
-                                    </i>
-                                </a>
-                            </li>
-                            <li className={FlowHelpers.currentRoute( 'incidentAdd' )}>
-                                <a href={FlowHelpers.pathFor( 'incidentAdd' )}>
-                                    <i className="glyphicon glyphicon-plus-sign"> Neues Ereignis</i>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
+                    {this.renderIncidentMenu()}
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                     <li className="dropdown">

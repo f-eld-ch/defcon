@@ -125,6 +125,7 @@ JournalEditor = React.createClass({
             createdAt: moment(date,'DD.MM.YYYY HH:mm').toDate(),
         };
         this.saveMessage(message);
+        this.refs.receiver.getDOMNode().focus();
     },
     render: function() {
         if (this.props.message) {
@@ -136,19 +137,19 @@ JournalEditor = React.createClass({
                             <div className="form-group">
                                 <label htmlFor="receiver" className="col-sm-1 control-label">Emfänger</label>
                                 <div className="col-sm-11">
-                                    <input className="form-control" type="text" ref="name" valueLink={this.linkState('receiver')} placeholder="Ereignisname"/>
+                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Ereignisname" autofocus/>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="receiver" className="col-sm-1 control-label">Sender</label>
                                 <div className="col-sm-11">
-                                    <input className="form-control" type="text" ref="name" valueLink={this.linkState('sender')} placeholder="Ereignisname"/>
+                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Ereignisname"/>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="sender" className="col-sm-1 control-label">Nachricht</label>
                                 <div className="col-sm-11">
-                                    <textarea className="form-control" name="text" rows="3" valueLink={this.linkState('text')} placeholder="Nachricht"></textarea>
+                                    <textarea className="form-control" name="text" ref="text" rows="3" valueLink={this.linkState('text')} placeholder="Nachricht"></textarea>
                                 </div>
                             </div>
                             <div className="form-group">
@@ -159,10 +160,10 @@ JournalEditor = React.createClass({
                             </div>
                             <div className="form-group">
                                 <div className="col-sm-offset-1 col-sm-2">
-                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Speichern</button>
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-floppy-o"> Speichern</i>  </button>
                                 </div>
                                 <div className="col-sm-2">
-                                    <button type="close-incident" className="btn btn-danger delete-message" onClick={this.handleDelete}>Löschen</button>
+                                    <button type="close-incident" className="btn btn-danger delete-message" onClick={this.handleDelete}><i className="fa fa-trash-o"> Löschen</i></button>
                                 </div>
                             </div>
                         </form>
@@ -178,19 +179,19 @@ JournalEditor = React.createClass({
                             <div className="form-group">
                                 <label htmlFor="receiver" className="col-sm-1 control-label">Emfänger</label>
                                 <div className="col-sm-11">
-                                    <input className="form-control" type="text" ref="name" valueLink={this.linkState('receiver')} placeholder="Ereignisname"/>
+                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Ereignisname" autofocus/>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="receiver" className="col-sm-1 control-label">Sender</label>
                                 <div className="col-sm-11">
-                                    <input className="form-control" type="text" ref="name" valueLink={this.linkState('sender')} placeholder="Ereignisname"/>
+                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Ereignisname"/>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="sender" className="col-sm-1 control-label">Nachricht</label>
                                 <div className="col-sm-11">
-                                    <textarea className="form-control" name="text" rows="3" valueLink={this.linkState('text')} placeholder="Nachricht"></textarea>
+                                    <textarea className="form-control" name="text" rows="3" ref="text" valueLink={this.linkState('text')} placeholder="Nachricht"></textarea>
                                 </div>
                             </div>
                             <div className="form-group">
@@ -200,10 +201,9 @@ JournalEditor = React.createClass({
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-sm-offset-1 col-sm-11">
-                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Speichern</button>
+                                <div className="col-sm-offset-1 col-sm-2">
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-floppy-o"> Speichern</i>  </button>
                                 </div>
-                                <div className="col-sm-offset-1 col-sm-11"></div>
                             </div>
                         </form>
                     </div>

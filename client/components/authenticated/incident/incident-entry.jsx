@@ -29,7 +29,7 @@ IncidentEntry = React.createClass({
                 <td>{this.props.incident.location}</td>
                 <td className="no-print">
                     <a href={FlowHelpers.pathFor('journal', { incident: this.props.incident._id } )} type="button" className="btn btn-primary btn-xs">
-                        <span className="glyphicon glyphicon-bullhorn"> Journal</span>
+                        <span className="fa fa-bars"> Journal</span>
                     </a>
                 </td>
                 <td>{this.getDate(this.props.incident.createdAt)}</td>
@@ -37,7 +37,7 @@ IncidentEntry = React.createClass({
                 <td>{this.props.incident.text}</td>
                 <td className="no-print">
                     <a href={FlowHelpers.pathFor('incidentEditor', { incident: this.props.incident._id } )} type="button" className="btn btn-primary btn-xs">
-                        <span className="glyphicon glyphicon-edit"></span>
+                        <span className="fa fa-pencil"></span>
                     </a>
                 </td>
             </tr>
