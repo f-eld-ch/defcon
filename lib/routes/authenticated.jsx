@@ -8,6 +8,13 @@ const authenticatedRoutes = FlowRouter.group({
   name: 'authenticated',
   triggersEnter: [ authenticatedRedirect ]
 });
+authenticatedRoutes.route('/', {
+    triggersEnter: [function(context, redirect) {
+      redirect('/incident');
+    }],
+    action() {
+    }
+});
 
 authenticatedRoutes.route('/incident', {
     name: 'incident',

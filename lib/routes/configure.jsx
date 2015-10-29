@@ -1,3 +1,8 @@
+FlowRouter.notFound = {
+  action() {
+    ReactLayout.render( Default, { yield: <NotFound /> } );
+  }
+};
 
 Accounts.onLogin( () => {
   let currentRoute = FlowRouter.current();
