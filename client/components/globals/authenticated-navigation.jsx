@@ -7,7 +7,16 @@ AuthenticatedNavigation = React.createClass({
             return (
                 <li className={FlowHelpers.currentRoute( 'journal' )}>
                     <a href={FlowHelpers.pathFor( 'journal', {incident: Session.get('incident')} )}>
-                        <i className="fa fa-bars"> Journal</i>
+                        <i className="fa fa-lg fa-bars"></i>&nbsp; Journal
+                    </a>
+                </li>
+            );
+        }
+        else {
+            return (
+                <li className="disabled">
+                    <a href={FlowHelpers.pathFor( 'incident' )}>
+                        <i className="fa fa-lg fa-bars"></i>&nbsp; Journal
                     </a>
                 </li>
             );
@@ -15,28 +24,26 @@ AuthenticatedNavigation = React.createClass({
     },
     render() {
         return (
-            <div className="collapse navbar-collapse">
+            <div className="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul className="nav navbar-nav">
                     <li className={FlowHelpers.currentRoute( 'incident' )}>
                         <a href={FlowHelpers.pathFor( 'incident' )}>
-                            <i className="fa fa-ambulance"> Ereignisse</i>
+                            <i className="fa fa-lg fa-ambulance"></i>&nbsp; Ereignisse
                         </a>
                     </li>
                     {this.renderIncidentMenu()}
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                     <li className="dropdown">
-                        <a
-                            href="#"
-                            className="dropdown-toggle"
+                        <a href="#" className="dropdown-toggle"
                             data-toggle="dropdown">
-                            {this.currentUserEmail()}
+                            <i className="fa fa-lg fa-user"></i>&nbsp; {this.currentUserEmail()}
                             <span className="caret">
                             </span>
                         </a>
                         <ul className="dropdown-menu" role="menu">
                             <li onClick={Meteor.logout}>
-                                <a href="#">Logout</a>
+                                <a href={FlowHelpers.pathFor('login')}>Logout</a>
                             </li>
                         </ul>
                     </li>

@@ -19,24 +19,24 @@ JournalTable = React.createClass({
     render: function() {
         return (
             <div>
-            <h2>Journal</h2>
-            <div className="table-responsive">
-                <table className="table table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Zeit</th>
-                            <th>Sender</th>
-                            <th>Emfänger</th>
-                            <th>Nachricht</th>
-                            <th className="no-print" />
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderJournalEntries()}
-                    </tbody>
-                </table>
+                <h2>Journal</h2>
+                <div className="table-responsive">
+                    <table className="table table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Zeit</th>
+                                <th>Sender</th>
+                                <th>Emfänger</th>
+                                <th>Nachricht</th>
+                                <th className="no-print" />
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.renderJournalEntries()}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
         );
     }
 });

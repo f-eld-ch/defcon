@@ -135,35 +135,35 @@ JournalEditor = React.createClass({
                     <div className="incident-editor">
                         <form className="form-horizontal update-journal-entry">
                             <div className="form-group">
-                                <label htmlFor="receiver" className="col-sm-1 control-label">Emfänger</label>
-                                <div className="col-sm-11">
-                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Ereignisname" autofocus/>
+                                <label htmlFor="receiver" className="col-md-1 control-label">Emfänger</label>
+                                <div className="col-md-11">
+                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Empfänger" autofocus/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="receiver" className="col-sm-1 control-label">Sender</label>
-                                <div className="col-sm-11">
-                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Ereignisname"/>
+                                <label htmlFor="receiver" className="col-md-1 control-label">Sender</label>
+                                <div className="col-md-11">
+                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Absender"/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="sender" className="col-sm-1 control-label">Nachricht</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="sender" className="col-md-1 control-label">Nachricht</label>
+                                <div className="col-md-11">
                                     <textarea className="form-control" name="text" ref="text" rows="3" valueLink={this.linkState('text')} placeholder="Nachricht"></textarea>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="text" className="col-sm-1 control-label">Datum</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="text" className="col-md-1 control-label">Datum</label>
+                                <div className="col-md-11">
                                     <input className="form-control" type="text" ref="createdAt" valueLink={this.linkState('createdAt')} placeholder=""/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-sm-offset-1 col-sm-2">
+                                <div className="col-md-offset-1 col-md-2">
                                     <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-floppy-o"> Speichern</i>  </button>
                                 </div>
-                                <div className="col-sm-2">
-                                    <button type="close-incident" className="btn btn-danger delete-message" onClick={this.handleDelete}><i className="fa fa-trash-o"> Löschen</i></button>
+                                <div className="col-md-2">
+                                    <button type="close-incident" className="btn btn-danger delete-message" onClick={this.handleDelete}><i className="fa fa-lg fa-trash-o"></i>&nbsp; Löschen</button>
                                 </div>
                             </div>
                         </form>
@@ -177,32 +177,32 @@ JournalEditor = React.createClass({
                     <div className="journal-editor">
                         <form className="form-horizontal add-journal-entry">
                             <div className="form-group">
-                                <label htmlFor="receiver" className="col-sm-1 control-label">Emfänger</label>
-                                <div className="col-sm-11">
-                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Ereignisname" autofocus/>
+                                <label htmlFor="receiver" className="col-md-1 control-label">Emfänger</label>
+                                <div className="col-md-11">
+                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Empfänger" autofocus/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="receiver" className="col-sm-1 control-label">Sender</label>
-                                <div className="col-sm-11">
-                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Ereignisname"/>
+                                <label htmlFor="receiver" className="col-md-1 control-label">Sender</label>
+                                <div className="col-md-11">
+                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Sender"/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="sender" className="col-sm-1 control-label">Nachricht</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="sender" className="col-md-1 control-label">Nachricht</label>
+                                <div className="col-md-11">
                                     <textarea className="form-control" name="text" rows="3" ref="text" valueLink={this.linkState('text')} placeholder="Nachricht"></textarea>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="text" className="col-sm-1 control-label">Datum</label>
-                                <div className="col-sm-11">
+                                <label htmlFor="text" className="col-md-1 control-label">Datum</label>
+                                <div className="col-md-11">
                                     <input className="form-control" type="text" ref="createdAt" valueLink={this.linkState('createdAt')} placeholder={this.getDate(new Date)}/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-sm-offset-1 col-sm-2">
-                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-floppy-o"> Speichern</i>  </button>
+                                <div className="col-md-offset-1 col-md-2">
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-lg fa-floppy-o"> </i>&nbsp; Speichern</button>
                                 </div>
                             </div>
                         </form>
