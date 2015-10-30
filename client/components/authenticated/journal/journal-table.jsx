@@ -21,14 +21,14 @@ JournalTable = React.createClass({
             <div>
                 <h2>Journal</h2>
                 <div className="table-responsive">
-                    <table className="table table-hover table-condensed">
+                    <table className="table table-hover table-condensed journal-table">
                         <thead>
                             <tr>
                                 <th>Zeit</th>
                                 <th>Sender</th>
                                 <th>Emfänger</th>
                                 <th>Nachricht</th>
-                                <th className="no-print" />
+                                <th className="hidden-print" />
                             </tr>
                         </thead>
                         <tbody>

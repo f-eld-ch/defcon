@@ -119,7 +119,7 @@ IncidentEditor = React.createClass({
     render: function() {
         if (this.props.incident) {
             return (
-                <div>
+                <div className="hidden-print">
                     <h2>Ereignis bearbeiten</h2>
                     <div className="incident-editor">
                         <form className="form-horizontal update-incident-entry">
@@ -155,7 +155,7 @@ IncidentEditor = React.createClass({
             );
         } else {
             return (
-                <div>
+                <div className="hidden-print">
                     <h2>Neues Ereignis</h2>
                     <div className="incident-editor">
                         <form className="form-horizontal add-incident-entry">

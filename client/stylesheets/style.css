@@ -27,14 +27,22 @@ body {
     height: 300px;
 }
 
-
-@media print {
-    .no-print,
-    .no-print * {
-        display: none !important;
-    }
-}
-
 .incident-table tbody>tr>td {
     vertical-align: middle;
+}
+
+/* special css for printing journal*/
+@media print {
+    body {
+        padding: 0px;
+        font-size: 11px;
+        font-family: 'Arial', sans-serif;
+    }
+    .journal-table tbody>tr>td {
+      white-space: pre-line;
+      word-wrap: break-word;
+    }
+    .pre {
+      white-space: pre-line;
+    }
 }
