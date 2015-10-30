@@ -137,13 +137,13 @@ JournalEditor = React.createClass({
                             <div className="form-group">
                                 <label htmlFor="receiver" className="col-md-1 control-label">Emfänger</label>
                                 <div className="col-md-11">
-                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Ereignisname" autofocus/>
+                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Empfänger" autofocus/>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="receiver" className="col-md-1 control-label">Sender</label>
                                 <div className="col-md-11">
-                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Ereignisname"/>
+                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Absender"/>
                                 </div>
                             </div>
                             <div className="form-group">
@@ -179,13 +179,13 @@ JournalEditor = React.createClass({
                             <div className="form-group">
                                 <label htmlFor="receiver" className="col-md-1 control-label">Emfänger</label>
                                 <div className="col-md-11">
-                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Ereignisname" autofocus/>
+                                    <input className="form-control" type="text" ref="receiver" valueLink={this.linkState('receiver')} placeholder="Empfänger" autofocus/>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="receiver" className="col-md-1 control-label">Sender</label>
                                 <div className="col-md-11">
-                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Ereignisname"/>
+                                    <input className="form-control" type="text" ref="sender" valueLink={this.linkState('sender')} placeholder="Sender"/>
                                 </div>
                             </div>
                             <div className="form-group">
