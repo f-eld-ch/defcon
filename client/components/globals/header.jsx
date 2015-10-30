@@ -29,7 +29,7 @@ AppHeader = React.createClass({
                             <span className="icon-bar">
                             </span>
                         </button>
-                        <a className="navbar-brand" href={this.brandLink()}>DefCon</a>
+                        <a className="navbar-brand" href={this.brandLink()}><span className="glyphicons glyphicons-hazard">DefCon</span></a>
                     </div>
                     {this.navigationItems()}
                 </div>
