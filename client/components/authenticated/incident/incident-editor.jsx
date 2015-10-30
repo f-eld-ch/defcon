@@ -76,11 +76,11 @@ IncidentEditor = React.createClass({
     renderCloseButton: function() {
         if (!this.props.incident.closedAt) {
             return (
-                <button type="close-incident" className="btn btn-warning close-incident" onClick={this.toggleClosed}><i className="fa fa-times"> Beenden</i></button>
+                <button type="close-incident" className="btn btn-warning close-incident" onClick={this.toggleClosed}><i className="fa fa-lg fa-times"> </i>&nbsp; Beenden</button>
             );
         } else {
             return (
-                <button type="close-incident" className="btn btn-info close-incident" onClick={this.toggleClosed}><i className="fa fa-external-link"> Neu Öffnen</i></button>
+                <button type="close-incident" className="btn btn-info close-incident" onClick={this.toggleClosed}><i className="fa fa-lg fa-external-link"> </i>&nbsp; Neu Öffnen</button>
             );
         }
     },
@@ -143,7 +143,7 @@ IncidentEditor = React.createClass({
                             </div>
                             <div className="form-group">
                                 <div className="col-md-offset-1 col-md-2">
-                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-floppy-o"> Speichern</i></button>
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-lg fa-floppy-o"> </i>&nbsp; Speichern</button>
                                 </div>
                                 <div className="col-md-2">
                                     {this.renderCloseButton()}
@@ -179,7 +179,7 @@ IncidentEditor = React.createClass({
                             </div>
                             <div className="form-group">
                                 <div className="col-md-offset-1 col-md-11">
-                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-floppy-o"> Speichern</i></button>
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-lg fa-floppy-o"> </i>&nbsp; Speichern</button>
                                 </div>
                                 <div className="col-md-offset-1 col-md-11"></div>
                             </div>

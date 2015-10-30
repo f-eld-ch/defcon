@@ -7,7 +7,7 @@ AuthenticatedNavigation = React.createClass({
             return (
                 <li className={FlowHelpers.currentRoute( 'journal' )}>
                     <a href={FlowHelpers.pathFor( 'journal', {incident: Session.get('incident')} )}>
-                        <i className="fa fa-bars"> Journal</i>
+                        <i className="fa fa-lg fa-bars"></i>&nbsp; Journal
                     </a>
                 </li>
             );
@@ -16,7 +16,7 @@ AuthenticatedNavigation = React.createClass({
             return (
                 <li className="disabled">
                     <a href={FlowHelpers.pathFor( 'incident' )}>
-                        <i className="fa fa-bars"> Journal</i>
+                        <i className="fa fa-lg fa-bars"></i>&nbsp; Journal
                     </a>
                 </li>
             );
@@ -28,7 +28,7 @@ AuthenticatedNavigation = React.createClass({
                 <ul className="nav navbar-nav">
                     <li className={FlowHelpers.currentRoute( 'incident' )}>
                         <a href={FlowHelpers.pathFor( 'incident' )}>
-                            <i className="fa fa-ambulance"> Ereignisse</i>
+                            <i className="fa fa-lg fa-ambulance"></i>&nbsp; Ereignisse
                         </a>
                     </li>
                     {this.renderIncidentMenu()}
@@ -37,10 +37,9 @@ AuthenticatedNavigation = React.createClass({
                     <li className="dropdown">
                         <a href="#" className="dropdown-toggle"
                             data-toggle="dropdown">
-                            <i className="fa fa-user"> {this.currentUserEmail()}
+                            <i className="fa fa-lg fa-user"></i>&nbsp; {this.currentUserEmail()}
                             <span className="caret">
                             </span>
-                            </i>
                         </a>
                         <ul className="dropdown-menu" role="menu">
                             <li onClick={Meteor.logout}>

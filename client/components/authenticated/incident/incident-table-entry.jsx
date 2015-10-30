@@ -11,7 +11,7 @@ IncidentTableEntry = React.createClass({
     getDate(date) {
         if (!date) {
             return (
-                <button type="close-incident" className="btn btn-warning btn-sm" onClick={this.toggleClosed}><i className="fa fa-times"> Beenden</i></button>
+                <button type="close-incident" className="btn btn-warning btn-sm" onClick={this.toggleClosed}><i className="fa fa-lg fa-times"></i>&nbsp; Beenden</button>
             );
         }
         return moment(date).format('DD.MM.YYYY HH:mm');
@@ -27,7 +27,7 @@ IncidentTableEntry = React.createClass({
                 <td>{this.props.incident.location}</td>
                 <td className="no-print">
                     <a href={FlowHelpers.pathFor('journal', { incident: this.props.incident._id } )} type="button" className="btn btn-primary btn-sm">
-                        <i className="fa fa-bars"> Journal</i>
+                        <i className="fa fa-lg fa-bars"></i>&nbsp; Journal
                     </a>
                 </td>
                 <td>{this.getDate(this.props.incident.createdAt)}</td>
@@ -35,7 +35,7 @@ IncidentTableEntry = React.createClass({
                 <td>{this.props.incident.text}</td>
                 <td className="no-print">
                     <a href={FlowHelpers.pathFor('incidentEditor', { incident: this.props.incident._id } )} type="button" className="btn btn-primary btn-sm">
-                        <i className="fa fa-pencil"></i>
+                        <i className="fa fa-lg fa-pencil"></i>
                     </a>
                 </td>
             </tr>

@@ -19,7 +19,7 @@ JournalTableEntry = React.createClass({
 
                 <td className="no-print">
                     <a href={FlowHelpers.pathFor('journalEditor', { incident: this.props.message.incident, message: this.props.message._id } )}  type="button" className="btn btn-primary btn-sm">
-                        <i className="fa fa-pencil"></i>
+                        <i className="fa fa-lg fa-pencil"></i>
                     </a>
                 </td>
             </tr>
