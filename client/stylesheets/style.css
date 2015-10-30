@@ -34,3 +34,7 @@ body {
         display: none !important;
     }
 }
+
+.incident-table tbody>tr>td {
+    vertical-align: middle;
+}

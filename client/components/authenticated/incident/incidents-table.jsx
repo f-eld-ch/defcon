@@ -70,7 +70,7 @@ IncidentsTable = React.createClass({
         }
         return (
             <div className="table-responsive">
-                <table className="table table-hover table-condensed">
+                <table className="table table-hover incident-table">
                     <thead>
                         <tr>
                             <th>Ereignis</th>
