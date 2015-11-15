@@ -5,32 +5,25 @@
 # but you can also edit it by hand.
 
 accounts-password
-accounts-ui
 mrt:moment
-sacha:spin
 twbs:bootstrap
 momentjs:moment
-tmeasday:errors
 fortawesome:fontawesome
 standard-minifiers
 meteor-base
 mobile-experience
 mongo
-blaze-html-templates
 session
-jquery
 tracker
 logging
 reload
-random
 ejson
-spacebars
-check
 react
 kadira:react-layout
 kadira:flow-router
 votercircle:winston
 themeteorchef:bert
 ecmascript
-dpraburaj:react-spin
 meteorhacks:kadira
+dpraburaj:react-spin
+check
