@@ -1,19 +1,24 @@
 AppHeader = React.createClass({
-    brandLink() {
+    getMeteorData: function() {
+      return {
+        currentUser: Meteor.user(),
+      };
+    },
+    brandLink: function() {
         if ( !Meteor.loggingIn() && !Meteor.userId() ) {
             return FlowHelpers.pathFor('login');
         }
 
         return FlowHelpers.pathFor('incident');
     },
-    navigationItems() {
+    navigationItems: function() {
         if ( !Meteor.loggingIn() && Meteor.user() ) {
             return <AuthenticatedNavigation />;
         } else {
             return <PublicNavigation />;
         }
     },
-    render() {
+    render: function() {
         return (
             <nav className="navbar navbar-default navbar-fixed-top">
                 <div className="container-fluid">

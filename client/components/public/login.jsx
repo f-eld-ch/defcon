@@ -1,10 +1,14 @@
 Login = React.createClass({
+    mixins: [React.addons.LinkedStateMixin],
+    componentWillMount: function() {
+        this.setState({
+            email: '',
+            password: '',
+        });
+    },
     handleSubmit(event) {
         event.preventDefault();
-        let email    = $( '[name="emailAddress"]' ).val(),
-            password = $( '[name="password"]' ).val();
-
-        Meteor.loginWithPassword( email, password, ( error ) => {
+        Meteor.loginWithPassword(this.state.email ,  this.state.password , ( error ) => {
             if ( error ) {
                 Bert.alert( error.reason, 'warning' );
             } else {
@@ -19,12 +23,12 @@ Login = React.createClass({
                     <h4 className="page-header">Login</h4>
                     <form id="login" className="login" onSubmit={this.handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="emailAddress">Email Address</label>
-                            <input type="email" name="emailAddress" className="form-control" placeholder="Email Address"/>
+                            <label htmlFor="email">Email Address</label>
+                            <input type="email" ref="email" className="form-control" placeholder="Email Address" valueLink={this.linkState('email')} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Passwort</label>
-                            <input type="password" name="password" className="form-control" placeholder="Password"/>
+                            <input type="password" ref="password" className="form-control" placeholder="Password" valueLink={this.linkState('password')} />
                         </div>
                         <div className="form-group">
                             <input type="submit" className="btn btn-success" value="Login"/>

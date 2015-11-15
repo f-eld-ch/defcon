@@ -1,5 +1,10 @@
 AuthenticatedNavigation = React.createClass({
-    currentUserEmail() {
+    getMeteorData: function() {
+      return {
+        currentUser: Meteor.user(),
+      };
+    },
+    currentUserEmail: function() {
         return Meteor.user().emails[0].address;
     },
     renderIncidentMenu: function() {
