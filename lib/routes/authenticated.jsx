@@ -49,6 +49,16 @@ authenticatedRoutes.route('/incident/:incident/journal', {
     }
 });
 
+authenticatedRoutes.route('/incident/:incident/journalAll', {
+    name: 'journalAll',
+    action(params) {
+        Session.set('incident', params.incident);
+        ReactLayout.render(Default, {
+            bottom: <JournalTable incident={params.incident} />
+        });
+    }
+});
+
 authenticatedRoutes.route('/incident/:incident/journal/:message', {
     name: 'journalEditor',
     action(params) {
