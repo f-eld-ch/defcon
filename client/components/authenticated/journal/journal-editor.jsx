@@ -159,10 +159,8 @@ JournalEditor = React.createClass({
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-md-offset-1 col-md-2">
+                                <div className="col-md-11">
                                     <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-lg fa-floppy-o"> </i>&nbsp; Speichern</button>
-                                </div>
-                                <div className="col-md-2">
                                     <button type="close-incident" className="btn btn-danger delete-message" onClick={this.handleDelete}><i className="fa fa-lg fa-trash-o"></i>&nbsp; Löschen</button>
                                 </div>
                             </div>
@@ -201,7 +199,7 @@ JournalEditor = React.createClass({
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-md-offset-1 col-md-2">
+                                <div className="col-md-11">
                                     <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-lg fa-floppy-o"> </i>&nbsp; Speichern</button>
                                 </div>
                             </div>
