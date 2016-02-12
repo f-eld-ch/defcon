@@ -5,8 +5,6 @@
 # but you can also edit it by hand.
 
 accounts-password
-mrt:moment
-twbs:bootstrap
 momentjs:moment
 fortawesome:fontawesome
 standard-minifiers
@@ -27,3 +25,5 @@ ecmascript
 meteorhacks:kadira
 dpraburaj:react-spin
 check
+fourseven:scss
+reywood:bootstrap3-sass

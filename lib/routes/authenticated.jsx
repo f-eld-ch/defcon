@@ -44,7 +44,7 @@ authenticatedRoutes.route('/incident/:incident/journal', {
         Session.set('incident', params.incident);
         ReactLayout.render(Default, {
             yield:  <JournalEdit incident={params.incident} />,
-            bottom: <JournalTable incident={params.incident} />
+            bottom: <JournalList incident={params.incident} showControls={true}/>
         });
     }
 });
@@ -54,7 +54,7 @@ authenticatedRoutes.route('/incident/:incident/journalAll', {
     action(params) {
         Session.set('incident', params.incident);
         ReactLayout.render(Default, {
-            bottom: <JournalTable incident={params.incident} />
+            yield: <JournalList incident={params.incident} showControls={false}/>
         });
     }
 });
@@ -65,7 +65,7 @@ authenticatedRoutes.route('/incident/:incident/journal/:message', {
         Session.set('incident', params.incident);
         ReactLayout.render(Default, {
             yield:  <JournalEdit message={params.message} incident={params.incident} />,
-            bottom: <JournalTable incident={params.incident} />
+            bottom: <JournalList incident={params.incident} showControls={true} />
         });
     }
 });

@@ -29,10 +29,10 @@ JournalTableEntry = React.createClass({
                 <td>{this.props.message.receiver}</td>
                 <td><span className="pre">{this.props.message.text}</span></td>
                 <td className="hidden-print">
-                    <div class="btn-group">
+                    <div className="btn-group">
                         <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i className="fa fa-lg fa-pencil"></i></button>
                         <ul className="dropdown-menu">
-                            <li><a href={FlowHelpers.pathFor('journalEditor', { incident: this.props.message.incident, message: this.props.message._id })}  type="button" className="btn btn-primary btn-sm">Bearbeiten</a></li>
+                            <li></li>
                         </ul>
                     </div>
                 </td>
