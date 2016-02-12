@@ -17,9 +17,11 @@ JournalTable = React.createClass({
         });
     },
     render: function() {
+        let time = moment(new Date).format('DD.MM.YYYY HH:mm');
         return (
             <div>
                 <h2>Journal</h2>
+                <h4 className="visible-print-block">Stand: {time}</h4>
                 <div className="table-responsive">
                     <table className="table table-hover table-condensed journal-table">
                         <thead>
