@@ -86,9 +86,15 @@ JournalEditor = React.createClass({
     handleDelete: function(event) {
         event.preventDefault();
         if (this.props.message) {
-            Meteor.call("deleteJournalMessage", this.props.message._id);
+            Meteor.call("deleteJournalMessage", this.props.message._id, function(err) {
+                if (err) {
+                    Bert.alert("Fehler beim Löschen: " + err.reason, 'danger');
+                    return;
+                }
+                let path = FlowRouter.path('journal', {incident: this.props.incident});
+                FlowRouter.go(path);
+            });
         }
-        FlowRouter.go(FlowRouter.path('journal', {incident: this.props.incident}));
     },
     componentWillReceiveProps: function(nextProps) {
         if (nextProps.message){
@@ -125,7 +131,7 @@ JournalEditor = React.createClass({
             createdAt: date ? moment(date,'DD.MM.YYYY HH:mm:ss').toDate() : new Date(),
         };
         this.saveMessage(message);
-        this.refs.receiver.getDOMNode().focus();
+        this.refs.receiver.focus();
     },
     render: function() {
         if (this.props.message) {

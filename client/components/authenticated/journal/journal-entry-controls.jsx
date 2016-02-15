@@ -11,10 +11,13 @@ JournalEntryControls = React.createClass({
         return;
     },
     renderEditButton: function() {
-        // TODO only show button if entry has been added in the last minute
-        return (
-            <a href={FlowHelpers.pathFor('journalEditor', { incident: this.props.message.incident, message: this.props.message._id })}  type="button" className="btn btn-primary btn-xs"><i className="fa fa-lg fa-pencil"/>&nbsp;Bearbeiten</a>
-        );
+        let difference = moment().diff(moment(this.props.message.insertedAt),'seconds');
+        if ( this.props.message.insertedAt && difference <= 60 ){
+            return (
+                <a href={FlowHelpers.pathFor('journalEditor', { incident: this.props.message.incident, message: this.props.message._id })}  type="button" className="btn btn-primary btn-xs"><i className="fa fa-lg fa-pencil"/>&nbsp;Bearbeiten</a>
+            );
+        }
+
     },
     render: function() {
         if (this.props.showControls) {
