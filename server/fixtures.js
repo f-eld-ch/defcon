@@ -34,9 +34,18 @@ if (Incidents.find().count === 0 || Journal.find().count() === 0) {
 
 if (Meteor.users.find().count() === 0) {
     console.log("creating user account");
-    Accounts.createUser({
-        username: Meteor.settings.admin.email,
-        email: Meteor.settings.admin.email,
-        password: Meteor.settings.admin.password,
-    });
+    if (Meteor.settings.admin){
+        Accounts.createUser({
+            username: Meteor.settings.admin.email,
+            email: Meteor.settings.admin.email,
+            password: Meteor.settings.admin.password,
+        });
+    }
+    else {
+        Accounts.createUser({
+            username: 'admin@localhost',
+            email: 'admin@localhost',
+            password: 'secretPassword',
+        });
+    }
 }
