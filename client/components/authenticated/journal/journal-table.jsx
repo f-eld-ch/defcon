@@ -1,38 +1,39 @@
 JournalTable = React.createClass({
-    mixins: [ ReactMeteorData ],
     propTypes: {
-        incident: React.PropTypes.string.isRequired,
+        messages: React.PropTypes.array.isRequired,
+        printonly: React.PropTypes.bool.isRequired,
     },
-    getMeteorData: function() {
-        let journalSubscription =  Meteor.subscribe('journal',this.props.incident);
-        return {
-            subscriptions: [journalSubscription],
-            isDataReady: journalSubscription.ready(),
-            messages: Journal.find({incident: this.props.incident},{sort: { createdAt: -1}}).fetch()
-        };
-    },
-    renderJournalEntries: function() {
-        return this.data.messages.map((message) => {
+    renderJournalTableEntries: function() {
+        return this.props.messages.map((message) => {
             return <JournalTableEntry key={message._id} message={message} />;
         });
     },
+    getPrintClass: function() {
+        if (this.props.printonly) {
+            return "row visible-print-block";
+        }
+        else {
+            return "row";
+        }
+    },
     render: function() {
+        let time = moment(new Date).format('DD.MM.YYYY HH:mm');
         return (
-            <div>
-                <h2>Journal</h2>
+            <div className={this.getPrintClass()}>
+                <h4>Stand: {time}</h4>
                 <div className="table-responsive">
-                    <table className="table table-hover table-condensed">
+                    <table className="table table-hover table-condensed journal-table">
                         <thead>
                             <tr>
                                 <th>Zeit</th>
                                 <th>Sender</th>
                                 <th>Emfänger</th>
                                 <th>Nachricht</th>
-                                <th className="no-print" />
+                                <th className="hidden-print" />
                             </tr>
                         </thead>
                         <tbody>
-                            {this.renderJournalEntries()}
+                            {this.renderJournalTableEntries()}
                         </tbody>
                     </table>
                 </div>

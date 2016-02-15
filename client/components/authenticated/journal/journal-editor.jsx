@@ -86,9 +86,15 @@ JournalEditor = React.createClass({
     handleDelete: function(event) {
         event.preventDefault();
         if (this.props.message) {
-            Meteor.call("deleteJournalMessage", this.props.message._id);
+            Meteor.call("deleteJournalMessage", this.props.message._id, function(err) {
+                if (err) {
+                    Bert.alert("Fehler beim Löschen: " + err.reason, 'danger');
+                    return;
+                }
+                let path = FlowRouter.path('journal', {incident: this.props.incident});
+                FlowRouter.go(path);
+            });
         }
-        FlowRouter.go(FlowRouter.path('journal', {incident: this.props.incident}));
     },
     componentWillReceiveProps: function(nextProps) {
         if (nextProps.message){
@@ -125,7 +131,7 @@ JournalEditor = React.createClass({
             createdAt: date ? moment(date,'DD.MM.YYYY HH:mm:ss').toDate() : new Date(),
         };
         this.saveMessage(message);
-        this.refs.receiver.getDOMNode().focus();
+        this.refs.receiver.focus();
     },
     render: function() {
         if (this.props.message) {
@@ -159,10 +165,8 @@ JournalEditor = React.createClass({
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-md-offset-1 col-md-2">
-                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-floppy-o"> Speichern</i>  </button>
-                                </div>
-                                <div className="col-md-2">
+                                <div className="col-md-11">
+                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-lg fa-floppy-o"> </i>&nbsp; Speichern</button>
                                     <button type="close-incident" className="btn btn-danger delete-message" onClick={this.handleDelete}><i className="fa fa-lg fa-trash-o"></i>&nbsp; Löschen</button>
                                 </div>
                             </div>
@@ -201,7 +205,7 @@ JournalEditor = React.createClass({
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-md-offset-1 col-md-2">
+                                <div className="col-md-11">
                                     <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-lg fa-floppy-o"> </i>&nbsp; Speichern</button>
                                 </div>
                             </div>
