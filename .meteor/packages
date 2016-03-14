@@ -7,7 +7,6 @@
 accounts-password
 momentjs:moment
 fortawesome:fontawesome
-standard-minifiers
 meteor-base
 mobile-experience
 mongo
@@ -27,3 +26,5 @@ dpraburaj:react-spin
 check
 fourseven:scss
 reywood:bootstrap3-sass
+static-html
+seba:minifiers-autoprefixer

@@ -1,2 +1,3 @@
 server/settings.json
 manifest.yml
+node_modules/**
