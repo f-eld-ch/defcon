@@ -20,8 +20,7 @@ RUN ln -s node_modules app/programs/server/node_modules \
 
 WORKDIR /opt/app
 
-ENV PORT 8080
-EXPOSE 8080
+ENV PORT 80
+EXPOSE 80
 
-ENTRYPOINT MONGO_URL=mongodb://$MONGO_SERVICE_HOST:$MONGO_SERVICE_PORT /usr/local/bin/node main.js
-
+ENTRYPOINT node main.js
