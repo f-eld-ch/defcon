@@ -1,3 +1,5 @@
+
+
 JournalEdit = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData: function() {

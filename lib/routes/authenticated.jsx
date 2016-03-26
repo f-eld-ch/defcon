@@ -16,27 +16,27 @@ authenticatedRoutes.route('/', {
     }
 });
 
-authenticatedRoutes.route('/incident', {
-    name: 'incident',
-    action() {
-        Session.set('incident', null);
-        ReactLayout.render(Default, {
-            yield:  <IncidentEdit />,
-            bottom: <IncidentsTable />
-        });
-    }
-});
-
-authenticatedRoutes.route('/incident/:incident', {
-    name: 'incidentEditor',
-    action(params) {
-        Session.set('incident', params.incident);
-        ReactLayout.render(Default, {
-            yield:  <IncidentEdit incident={params.incident} />,
-            bottom: <IncidentsTable />
-        });
-    }
-});
+// authenticatedRoutes.route('/incident', {
+//     name: 'incident',
+//     action() {
+//         Session.set('incident', null);
+//         ReactLayout.render(Default, {
+//             yield:  <IncidentEdit />,
+//             bottom: <IncidentsTable />
+//         });
+//     }
+// });
+//
+// authenticatedRoutes.route('/incident/:incident', {
+//     name: 'incidentEditor',
+//     action(params) {
+//         Session.set('incident', params.incident);
+//         ReactLayout.render(Default, {
+//             yield:  <IncidentEdit incident={params.incident} />,
+//             bottom: <IncidentsTable />
+//         });
+//     }
+// });
 
 authenticatedRoutes.route('/incident/:incident/journal', {
     name: 'journal',
