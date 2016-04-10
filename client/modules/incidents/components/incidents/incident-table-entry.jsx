@@ -30,4 +30,4 @@ export default class extends React.Component {
             </tr>
         );
     }
-};
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-import FlowHelpers from '../actions/route_helper';
 
 
 export default React.createClass({
@@ -8,8 +7,8 @@ export default React.createClass({
     const {brand, leftContent, rightContent} = this.props;
     return (
       <header className="main-header">
-        <div className="navbar navbar-inverse navbar-fixed-top">
-          <div className="container">
+        <div className="navbar navbar-default navbar-static-top">
+          <div className="container-fluid">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle"
                 data-toggle="collapse" data-target=".navbar-inverse-collapse">

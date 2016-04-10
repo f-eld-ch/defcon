@@ -1,9 +1,9 @@
-import _users from './_users';
+//import _users from './_users';
 import journal from './journal';
 import incidents from './incidents';
 
 export default function () {
-  _users();
+//  _users();
   journal();
   incidents();
 }

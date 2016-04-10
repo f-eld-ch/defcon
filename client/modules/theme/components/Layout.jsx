@@ -21,9 +21,6 @@ export default class extends React.Component {
         <div className="container-fluid">
             {this.props.content()}
         </div>
-        <div className="container-fluid">
-            {this.props.bottom()}
-        </div>
       </div>
     );
   }

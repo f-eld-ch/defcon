@@ -1,54 +1,39 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import {
-  LayoutDefault,
-  Simple
-} from '/client/configs/theme.jsx';
+import {LayoutDefault} from '/client/configs/theme.jsx';
+import IncidentsAdd  from './containers/incidents/add.jsx';
+import IncidentsList from './containers/incidents/list.jsx';
+import Incident from './containers/incidents/single.jsx';
 
-import IncidentsList   from './containers/incidents/collection.jsx';
-import IncidentsEdit   from './containers/incidents/edit.jsx';
-import IncidentsAdd    from './containers/incidents/add.jsx';
-// import ColorsEdit from './containers/colors/edit.jsx';
-//
+
 export default function (injectDeps, {FlowRouter}) {
-
-  const LayoutDefaultCtx = injectDeps(LayoutDefault);
-
-  FlowRouter.route('/incdent', {
-    name: 'incidents.colorsList',
-    action() {
-      mount(LayoutDefaultCtx, {
-        content: () => (<IncidentsList />)
-      });
-    }
-  });
+  const MainLayoutCtx = injectDeps(LayoutDefault);
 
   FlowRouter.route('/incidents/add', {
-    name: 'incidents.colorsAdd',
+    name: 'incident.add',
     action() {
-      mount(LayoutDefaultCtx, {
+      mount(MainLayoutCtx, {
         content: () => (<IncidentsAdd />)
       });
     }
   });
 
-  FlowRouter.route('/incidents/:_id', {
-    name: 'incidents.colorsView',
-    action({_id}) {
-      mount(LayoutDefaultCtx, {
-        content: () => (<IncidentsEdit _id={_id}/>)
+  FlowRouter.route('/incidents', {
+    name: 'incidents.list',
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<IncidentsList />)
       });
     }
   });
 
-  FlowRouter.route('/incidents/:_id/edit', {
-    name: 'incidents.colorsEdit',
-    action({_id}) {
-      mount(LayoutDefaultCtx, {
-        content: () => (<IncidentsEdit _id={_id}/>)
-      });
-    }
-  });
-
-};
+  FlowRouter.route('/incidents/:incidentId', {
+  name: 'incidents.single',
+  action({incidentId}) {
+    mount(MainLayoutCtx, {
+      content: () => (<Incident incidentId={incidentId}/>)
+    });
+  }
+});
+}

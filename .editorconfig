@@ -4,6 +4,7 @@
 root = true
 
 # All files.
+
 [*]
 end_of_line = LF
 indent_style = space

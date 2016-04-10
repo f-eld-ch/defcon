@@ -1,7 +1,7 @@
-import incidents from './incidents';
+import incident from './incident';
 
 const actions = {
-  incidents
+  incident
 };
 
 export default actions;

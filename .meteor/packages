@@ -5,7 +5,6 @@
 # but you can also edit it by hand.
 
 accounts-password
-momentjs:moment
 fortawesome:fontawesome
 meteor-base
 mobile-experience
@@ -15,16 +14,12 @@ tracker
 logging
 reload
 ejson
-react
 kadira:react-layout
 kadira:flow-router
-votercircle:winston
-themeteorchef:bert
 ecmascript
 meteorhacks:kadira
-dpraburaj:react-spin
-check
 fourseven:scss
-reywood:bootstrap3-sass
-static-html
 seba:minifiers-autoprefixer
+reywood:bootstrap3-sass
+dpraburaj:react-spin
+std:react-accounts-ui

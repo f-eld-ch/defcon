@@ -1,4 +1,24 @@
-import dataComposer from '../../composers/incidents/add.jsx';
-import Component from '../../components/incidents/incident-editor.jsx';
+import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
-export default dataComposer(Component);
+import NewIncident from '../../components/incidents/add.jsx';
+import Loader from '/client/modules/core/components/loader/loader.jsx';
+
+export const composer = ({context, clearErrors}, onData) => {
+  const {LocalState} = context();
+  const error = LocalState.get('SAVING_ERROR');
+  onData(null, {error});
+
+  // clearErrors when unmounting the component
+  return clearErrors;
+};
+
+export const depsMapper = (context, actions) => ({
+  create: actions.incident.add,
+  clearErrors: actions.incident.clearErrors,
+  context: () => context
+});
+
+export default composeAll(
+  composeWithTracker(composer,Loader),
+  useDeps(depsMapper)
+)(NewIncident);

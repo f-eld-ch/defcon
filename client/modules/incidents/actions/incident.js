@@ -1,14 +1,14 @@
 export default {
 
   // create
-  add({Meteor, LocalState, FlowRouter}, data) {
-    const _id = Meteor.uuid();
-    Meteor.call('incident.create', data, _id, (err) => {
+  add({Meteor, LocalState, FlowRouter}, name, location, createdAt) {
+    const id = Meteor.uuid();
+    Meteor.call('incidents.create', id, name, location, createdAt, (err) => {
       if (err) {
         return LocalState.set('incidents.SAVE_ERROR', err.message);
       }
+      FlowRouter.go(`/incidents/${id}`);
     });
-    FlowRouter.go(`/incidents/${_id}`);
   },
 
   // update
@@ -30,7 +30,7 @@ export default {
     });
   },
 
-  toggleShowCompleted({Meteor, LocalState}, _id) {
+  toggleShowCompleted({Meteor, LocalState}) {
     const state = LocalState.get('incidents.SHOW_COMPLETED');
     LocalState.set('incidents.SHOW_COMPLETED', !state);
   },
@@ -40,5 +40,7 @@ export default {
     LocalState.set('incidents.DELETE_ERROR', null);
     return LocalState.set('incidents.SAVE_ERROR', null);
   }
+
+
 
 };

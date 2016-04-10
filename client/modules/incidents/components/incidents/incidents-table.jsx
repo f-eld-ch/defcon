@@ -4,16 +4,16 @@ import IncidentsTableEntry from './incident-table-entry.jsx';
 export default class extends React.Component {
 
     renderTitle(){
-        if (this.data.openCount === 0){
+        if (this.props.openCount === 0){
             return (
                 <h3>Kein offenes Ereignis</h3>
             );
         }
-        if (this.data.openCount === 1){
+        if (this.props.openCount === 1){
             return (
                 <h3>
                     <span className="label label-default">
-                        {this.data.openCount}
+                        {this.props.openCount}
                     </span> offenes Ereignis
                 </h3>
             );
@@ -35,7 +35,7 @@ export default class extends React.Component {
                         type="checkbox"
                         readOnly={true}
                         checked={this.props.hideClosed}
-                        onClick={this.toggleHideCompleted} />
+                        onClick={this.toggleHide} />
                     Geschlossene Ereignisse ausblenden
                 </label>
             </div>
@@ -43,7 +43,7 @@ export default class extends React.Component {
     }
 
     renderTable() {
-        if (_.isEmpty(this.data.incidents)){
+        if (_.isEmpty(this.props.incidents)){
             return;
         }
         return (
@@ -69,7 +69,7 @@ export default class extends React.Component {
     }
 
     renderIncidents() {
-        return this.data.incidents.map((incident) => {
+        return this.props.incidents.map((incident) => {
             return <IncidentTableEntry key={incident._id} incident={incident} />;
         });
     }
@@ -84,4 +84,4 @@ export default class extends React.Component {
             </div>
         );
     }
-};
+}
