@@ -5,7 +5,7 @@ import Loader from '/client/modules/core/components/loader/loader.jsx';
 
 export const composer = ({context, clearErrors}, onData) => {
   const {LocalState} = context();
-  const error = LocalState.get('SAVING_ERROR');
+  const error = LocalState.get('INCIDENTS.SAVE_ERROR');
   onData(null, {error});
 
   // clearErrors when unmounting the component

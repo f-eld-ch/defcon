@@ -11,9 +11,9 @@ export default class extends React.Component {
             <span className="caret"></span>
           </a>
           <ul className="dropdown-menu"role="menu">
+            <li><a href="/incidents"><i className="fa fa-th-list"></i>&nbsp; Alle Ereignisse</a></li>
             <li><a href="/incidents/add"><i className="fa fa-plus-circle"></i>&nbsp; Erstellen</a></li>
             <li><a href="/incidents/{incident}/edit">Bearbeiten</a></li>
-            <li><a href="/incidents"><i className="fa fa-th-list"></i>&nbsp; Alle Ereignisse</a></li>
           </ul>
         </li>
     );
@@ -27,8 +27,8 @@ export default class extends React.Component {
             <i className="fa fa-lg fa-ambulance"></i>&nbsp; Ereignis<span className="caret"></span>
           </a>
           <ul className="dropdown-menu" role="menu">
-            <li><a href="/incidents/add"><i className="fa fa-plus-circle"></i>&nbsp; Erstellen</a></li>
             <li><a href="/incidents"><i className="fa fa-th-list"></i>&nbsp; Alle Ereignisse</a></li>
+            <li><a href="/incidents/add"><i className="fa fa-plus-circle"></i>&nbsp; Erstellen</a></li>
           </ul>
         </li>
     );

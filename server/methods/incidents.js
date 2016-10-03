@@ -5,8 +5,8 @@ import {check} from 'meteor/check';
 
 export default function () {
   Meteor.methods({
-      'incidents.create' (_id, name, location, createdAt) {
-        logger.info('added new incident ', _id , ' by User ', Meteor.uuid() );
+      'incidents.create' ( _id, name, location, createdAt) {
+        logger.info('adding new incident by User ', Meteor.uuid() );
 
         check(_id, String);
         check(name, String);
@@ -21,55 +21,55 @@ export default function () {
           createdAt
         };
         // insert the new incident
-        let inc = Incidents.insert(incident);
-        logger.info('added new incident ', inc._id , ' by User ', Meteor.uuid() );
-        return inc._id;
+        Incidents.insert(incident);
       },
-      'incidents.update' (_id, incident) {
-        check(_id, String);
+      'incidents.update' (id, incident) {
+        logger.info('editing Incident ', id , ' incident ', incident );
+
+        check(id, String);
         check(incident, {
           name: String,
           location: String,
-          createdAt: Match.Optional(Date),
-          closedAt: Match.Optional(Date)
+          createdAt: Date
         });
         const selector = {
-          _id
+          _id: id
         };
-        logger.info('editing Incident ', _id , ' by User ', Meteor.uuid() );
-        if (!Incidents.findOne(selector)) {
-          throw new Meteor.Error('invalid-incident', 'incident does not exist', _id);
+        logger.info('editing Incident ', id , ' by User ', Meteor.uuid() );
+        const currentIncident = Incidents.findOne(selector);
+        if (!currentIncident) {
+          throw new Meteor.Error('invalid-incident', 'incident does not exist', id);
         } else {
           Incidents.update(selector, {
             $set: {
               name: incident.name,
               location: incident.location,
               createdAt: incident.createdAt,
-              closedAt: incident.closedAt ? incident.closedAt : null
+              closedAt: incident.closedAt ? incident.closedAt : currentIncident.closedAt
             }
           });
         }
       },
       // toggle closedAt,
       // i.e. open closed incidents and close open incident
-      'incidents.toggleClose' (_id) {
-        check(_id, String);
-        const selector = {
-          _id
-        };
-        const incident = Incidents.findOne(selector);
+      'incidents.toggleClose' (id) {
+        check(id, String);
+
+        const incident = Incidents.findOne({_id: id});
         if (!incident) {
-          throw new Meteor.Error('invalid-incident', 'incident does not exist', _id);
+          throw new Meteor.Error('invalid-incident', 'incident does not exist', id);
         } else {
           const date = new Date();
           if (incident.closedAt) {
-            Incidents.update(_id, {
+            logger.info('Reopening Incident', id);
+            Incidents.update(incident._id, {
               $set: {
                 closedAt: null
               }
             });
           } else {
-            Incidents.update(_id, {
+            logger.info('Closing Incident', id);
+            Incidents.update(incident._id, {
               $set: {
                 closedAt: date
               }

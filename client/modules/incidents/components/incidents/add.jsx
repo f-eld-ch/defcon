@@ -1,10 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 
 class NewIncident extends React.Component {
   render() {
     const {error} = this.props;
     return (
         <div>
+            {error ? this.renderError(error) : null}
             <h2>Neues Ereignis</h2>
             <div className="incident-editor">
               <form className="form-horizontal add-incident-entry" onSubmit={this.createIncident.bind(this)}>
@@ -23,7 +25,7 @@ class NewIncident extends React.Component {
                 <div className="form-group">
                   <label htmlFor="text" className="col-md-1 control-label">Eröffnet</label>
                   <div className="col-md-11">
-                    <input className="form-control" type="text" ref="createdAt" placeholder=""/>
+                    <input className="form-control" type="text" ref="createdAt" placeholder={moment().format('DD.MM.YYYY HH:mm')}/>
                   </div>
                 </div>
                 <div className="form-group">
@@ -35,8 +37,15 @@ class NewIncident extends React.Component {
                 </div>
               </form>
             </div>
-            {error ? <p style={{color: 'red'}}>{error}</p> : null}
         </div>
+    );
+  }
+
+  renderError(error) {
+    return (
+      <div className='alert alert-danger fade in error'>
+        {error}
+      </div>
     );
   }
 

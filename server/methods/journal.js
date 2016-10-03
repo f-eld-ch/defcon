@@ -5,18 +5,6 @@ import {moment} from 'moment';
 import {check,Match} from 'meteor/check';
 
 export default() => {
-  Journal.deny({
-    insert: function() {
-      return true;
-    },
-    update: function() {
-      return true;
-    },
-    remove: function() {
-      return true;
-    }
-  });
-
   Meteor.methods({
 
     'journal.create' (message) {

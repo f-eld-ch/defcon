@@ -1,9 +1,9 @@
 import React from 'react';
 
-//import authComposer from '/client/modules/_users/composers/account/auth.jsx';
-import UserControls from './UserControls.jsx';
+import _userControls from './UserControls.jsx';
+import authComposer  from '../../core/composers/auth.jsx';
 
-//const UserControls = authComposer(_UserControls);
+const UserControls = authComposer(_userControls);
 
 export default class extends React.Component {
   render() {

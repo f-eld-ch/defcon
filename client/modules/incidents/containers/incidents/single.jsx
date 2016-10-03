@@ -8,12 +8,9 @@ export const composer = ({context, incidentId}, onData) => {
 
   if (Meteor.subscribe('incidents.single', incidentId).ready()) {
     const incident = Collections.Incidents.findOne({_id: incidentId});
-    console.log(incident);
-    onData(null, {incident});
-  } else {
-    const incident = Collections.Incidents.findOne({_id: incidentId});
     onData(null, {incident});
   }
+
 };
 
 export const depsMapper = (context, actions) => ({

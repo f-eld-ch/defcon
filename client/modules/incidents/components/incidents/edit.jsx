@@ -1,40 +1,117 @@
 import React from 'react';
+import moment from 'moment';
 
 export default class extends React.Component {
+
+  constructor(props) {
+    super(props);
+    const {incident} = props;
+
+    this.state = {
+      id: incident._id,
+      name: incident.name,
+      location: incident.location,
+      createdAt: this.getDate(incident.createdAt)
+    };
+  }
+
+  handleNameChange(event) {
+    this.setState({name: event.target.value});
+  }
+
+  handleLocationChange(event) {
+    this.setState({location: event.target.value});
+  }
+
+  handleTimeChange(event) {
+    this.setState({createdAt: event.target.value});
+  }
+
   render() {
+    const {incident,error} = this.props;
     return (
       <div className="hidden-print">
-        <h2>Neues Ereignis</h2>
+        {error ? this.renderError(error) : null}
+        <h2>Ereignis bearbeiten</h2>
         <div className="incident-editor">
-          <form className="form-horizontal add-incident-entry">
+          <form className="form-horizontal add-incident-entry" onSubmit={this.saveIncident.bind(this)}>
             <div className="form-group">
-              <label htmlFor="receiver" className="col-md-1 control-label">Name</label>
+              <label htmlFor="name" className="col-md-1 control-label">Name</label>
               <div className="col-md-11">
-                <input className="form-control" type="text" ref="name" value={this.props.incident.name} placeholder="Ereignisname"/>
+                <input className="form-control" type="text" ref="name" onChange={this.handleNameChange.bind(this)} value={this.state.name} placeholder="Ereignisname"/>
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="sender" className="col-md-1 control-label">Ort</label>
+              <label htmlFor="location" className="col-md-1 control-label">Ort</label>
               <div className="col-md-11">
-                <input className="form-control" type="text" ref="location" value={this.props.incident.location} placeholder="Standort"/>
+                <input className="form-control" type="text" ref="location" onChange={this.handleLocationChange.bind(this)} value={this.state.location} placeholder="Standort"/>
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="text" className="col-md-1 control-label">Eröffnet</label>
+              <label htmlFor="createdAt" className="col-md-1 control-label">Eröffnet</label>
               <div className="col-md-11">
-                <input className="form-control" type="text" ref="createdAt" defaultValue={this.props.incident.date} placeholder=""/>
+                <input className="form-control" type="text" ref="createdAt" onChange={this.handleTimeChange.bind(this)} value={this.state.createdAt} placeholder=""/>
               </div>
             </div>
             <div className="form-group">
-              <div className="col-md-offset-1 col-md-11">
-                <button type="submit" className="btn btn-primary" onClick={this.props.submit}>
+              <div className="col-md-offset-1 col-md-1">
+                <button type="submit" className="btn btn-primary">
                   <i className="fa fa-lg fa-floppy-o"></i>&nbsp; Speichern</button>
               </div>
-              <div className="col-md-offset-1 col-md-11"></div>
+              <div className="col-md-1">
+                {this.renderCloseButton()}
+              </div>
             </div>
           </form>
         </div>
       </div>
     );
+  }
+
+  renderCloseButton() {
+    const {incident} = this.props;
+    if (!incident.closedAt) {
+      return (
+        <button type="close-incident" className="btn btn-warning close-incident" onClick={this.toggleClosed.bind(this)}>
+          <i className="fa fa-lg fa-times"></i>&nbsp; Beenden</button>
+      );
+    } else {
+      return (
+        <button type="close-incident" className="btn btn-info close-incident" onClick={this.toggleClosed.bind(this)}>
+          <i className="fa fa-lg fa-external-link"></i>&nbsp; Neu Öffnen</button>
+      );
+    }
+  }
+
+  renderError(error) {
+    return (
+      <div className='alert alert-danger fade in error'>
+        {error}
+      </div>
+    );
+  }
+
+  getDate(date) {
+    if (!date) {
+      return
+    }
+    return moment(date).format('DD.MM.YYYY HH:mm');
+  }
+
+  saveIncident(event) {
+    if (event && event.preventDefault) {
+      event.preventDefault();
+    }
+    const {update, incident} = this.props;
+    const {name, location, createdAt} = this.refs;
+    update(incident._id, name.value, location.value, moment(createdAt.value, 'DD.MM.YYYY HH:mm').toDate());
+  }
+
+  toggleClosed(event) {
+    if (event && event.preventDefault) {
+      event.preventDefault();
+    }
+    const {closeIncident, incident} = this.props;
+    closeIncident(incident._id);
   }
 }
