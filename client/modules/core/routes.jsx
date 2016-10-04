@@ -1,4 +1,3 @@
-import React   from 'react';
 import {mount} from 'react-mounter';
 
 import {LayoutDefault} from '/client/configs/theme.jsx';
@@ -19,6 +18,24 @@ export default function(injectDeps, {FlowRouter}) {
 
   FlowRouter.route("/login", {
     name: 'login',
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<Accounts.ui.LoginForm />)
+      });
+    }
+  });
+
+  FlowRouter.route("/account", {
+    name: 'account',
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<Accounts.ui.LoginForm />)
+      });
+    }
+  });
+
+  FlowRouter.route("/logout", {
+    name: 'logout',
     action() {
       mount(MainLayoutCtx, {
         content: () => (<Accounts.ui.LoginForm />)

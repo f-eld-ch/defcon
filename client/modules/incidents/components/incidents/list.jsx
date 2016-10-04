@@ -10,7 +10,7 @@ export default class extends React.Component {
               {error ? this.renderError(error) : null}
               {this.renderTitle()}
               {this.renderHideBox()}
-              {this.renderTable()}
+              {this.renderList()}
           </div>
       );
   }
@@ -64,48 +64,59 @@ export default class extends React.Component {
       );
   }
 
-  renderTable() {
+  renderList() {
     const {incidents} = this.props;
     return (
-      <div className = "table-responsive" > <table className="table table-hover incident-table">
-          <thead>
-            <tr>
-              <th>Ereignis</th>
-              <th>Ort</th>
-              <th>Journal</th>
-              <th>Eröffnet</th>
-              <th>Geschlossen</th>
-              <th className="no-print"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {incidents.map(incident => (
-              <tr key={incident._id} className={incident.closedAt
-                ? "active"
-                : ""}>
-                <td>{incident.name}</td>
-                <td>{incident.location}</td>
-                <td className="no-print">
-                  <a href={`/incidents/${incident._id}/journal`} type="button" className="btn btn-primary">
-                    <i className="fa fa-lg fa-bars"></i>&nbsp; Journal
-                  </a>
-                </td>
-                <td>{this.getDate(incident.createdAt)}</td>
-                <td>{!incident.closedAt ?
-                        <button type="close-incident" className="btn btn-warning" ref={incident._id} onClick={this.closeIncident.bind(this,incident._id)}><i className="fa fa-lg fa-times"></i>&nbsp; Beenden < /button> : this.getDate(incident.closedAt)}
-                </td>
-                <td>{incident.text}</td>
-                <td className="no-print">
-                  <a href={`/incidents/${incident._id}/edit`} type="button" className="btn btn-primary">
-                    <i className="fa fa-lg fa-pencil"></i>
-                  </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="container-fluid">
+          <div className="row incident-list hidden-xs">
+              <div className="col-sm-4 col-xs-6"><b>Ereignis</b></div>
+              <div className="col-sm-2 col-xs-6"><b>Ort</b></div>
+              <div className="col-sm-2 col-xs-4"><b>Eröffnet</b></div>
+              <div className="col-sm-2 col-xs-4"><b>Geschlossen</b></div>
+              <div className="col-sm-2 col-xs-4"><b>Optionen</b></div>
+          </div>
+          {incidents.map(incident => (
+              <div className="row incident-list-row" key={incident._id}>
+                  <div className="col-xs-6 visible-xs"><b>Name:</b></div>
+                  <div className="col-sm-4 col-xs-6">{incident.name}</div>
+                  <div className="col-xs-6 visible-xs"><b>Ort:</b></div>
+                  <div className="col-sm-2 col-xs-6">{incident.location}</div>
+                  <div className="col-xs-6 visible-xs"><b>Eröffnet:</b></div>
+                  <div className="col-sm-2 col-xs-6">{this.getDate(incident.createdAt)}</div>
+                  <div className="col-xs-6 visible-xs"><b>Geschlossen:</b></div>
+                  <div className="col-sm-2 col-xs-6">{this.getDate(incident.closedAt)}</div>
+                  <div class="clearfix visible-xs-block"></div>
+                  <div className="col-sm-2 col-xs-12">
+                      <div className="btn-group">
+                            <a role="button" className="btn btn-primary" href={`/incidents/${incident._id}/journal`}><i className="fa fa-bars"></i>&nbsp; Journal</a>
+                            <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                              <span className="caret"></span>
+                              <span className="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul className="dropdown-menu">
+                              <li><a href={`/incidents/${incident._id}/edit`}><i className="fa fa-pencil"></i>&nbsp; Bearbeiten</a></li>
+                              <li role="separator" className="divider"></li>
+                              <li>{this.renderCloseButton(incident)}</li>
+                            </ul>
+                      </div>
+                 </div>
+              </div>
+          ))}
       < /div>
     )
+  }
+
+  renderCloseButton(incident) {
+      if (incident.closedAt) {
+        return (
+          <a href="#" onClick={this.closeIncident.bind(this,incident._id)}><i className="fa fa-external-link"></i>&nbsp; Öffnen</a>
+        );
+      }
+      else {
+          return (
+              <a href="#" onClick={this.closeIncident.bind(this,incident._id)}><i className="fa fa-times"></i>&nbsp; Beenden</a>
+          )
+      }
   }
 
   getDate(date) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import DropDown from './NavElemDropDown.jsx';
-import Incidents from '/client/modules/incidents/components/navigation/incidents.jsx';
+import Incidents from '/client/modules/incidents/containers/navigation/incidents.jsx';
 
 export default() => {
   return (

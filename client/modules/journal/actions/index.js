@@ -1,4 +1,4 @@
-import journalCreate from './journal_create';
+import journalCreate from './create';
 
 const actions = {
   journalCreate
