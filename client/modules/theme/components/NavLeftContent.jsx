@@ -21,6 +21,11 @@ export default() => {
           <i className="fa fa-lg fa-male"></i>&nbsp; Mitteltablle
         </a>
       </li>
+      <li className="disabled">
+        <a href="/items">
+          <i className="fa fa-lg fa-exchange"></i>&nbsp; Verbindungen
+        </a>
+      </li>
     </ul>
   );
 };
