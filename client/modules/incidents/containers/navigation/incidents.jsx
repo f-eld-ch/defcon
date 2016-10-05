@@ -2,11 +2,10 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 import IncidentNav from '../../components/navigation/incidents.jsx';
 
-export const composer = ({context}, onData) => {
+export const composer = ({context, incidentId}, onData) => {
   const {Meteor, LocalState, Collections} = context();
-  const incident = LocalState.get('INCIDENT');
   if (!incident) {
-    return onData(null,{})
+    return onData(null,{});
   }
 
   if (Meteor.subscribe('incidents.single', incident).ready()) {

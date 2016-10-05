@@ -86,7 +86,7 @@ export default class extends React.Component {
 
   getDate(date) {
     if (!date) {
-      return
+      return;
     }
     return moment(date).format('DD.MM.YYYY HH:mm');
   }

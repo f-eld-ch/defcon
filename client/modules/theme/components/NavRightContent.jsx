@@ -10,6 +10,6 @@ export default class extends React.Component {
   render() {
     return (
       <UserControls classVersion="navbar-nav"/>
-    )
+    );
   }
 }
