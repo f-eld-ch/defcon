@@ -1,2 +1,2 @@
-FROM meteorhacks/meteord:onbuild
+FROM kadirahq/meteord
 MAINTAINER Daniel Aschwanden <nimdanitro@gmail.com>
