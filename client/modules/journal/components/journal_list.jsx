@@ -1,13 +1,12 @@
 import React from 'react';
 import moment from 'moment';
+import Error  from '/client/modules/core/components/error.jsx';
 
 export default class extends React.Component {
   render() {
-    const {error} = this.props;
-
     return (
       <div>
-        {error ? this.renderError(error) : null}
+        <Error message={this.props.error} clearErrors={this.props.clearErrors} />
         {this.renderJournal()}
       </div>
     );
@@ -90,20 +89,12 @@ export default class extends React.Component {
     );
   }
 
-  renderError(error) {
-    return (
-      <div className='alert alert-danger fade in error'>
-        {error}
-      </div>
-    );
-  }
-
   renderHideBox() {
     const {showAll} = this.props;
     return (
       <div className="checkbox hidden-print">
         <label className="show-all">
-          <input type="checkbox" readOnly={true} checked={!showAll} onClick={this.toggleShowAll.bind(this)}/>
+          <input type="checkbox" checked={!showAll} onClick={this.toggleShowAll.bind(this)}/>
           Zeige nur wichtige Nachrichten
         </label>
       </div>
@@ -123,18 +114,16 @@ export default class extends React.Component {
           </button>
           <ul className="dropdown-menu">
             <li>
-              <a href={`/incidents/${incidentId}/journal/${message._id}/edit`}>
-                <i className="fa fa-pencil"></i>&nbsp; Bearbeiten</a>
+              <a href={`/incidents/${incidentId}/journal/${message._id}/edit`}><i className="fa fa-pencil"></i>&nbsp; Bearbeiten</a>
             </li>
             <li>
-              <a href={`/incidents/${incidentId}/journal/${message._id}/delete`}>
-                <i className="fa fa-trash"></i>&nbsp; Löschen</a>
+                <a onClick={this.deleteMessage.bind(this, message._id)}><i className="fa fa-trash"></i>&nbsp; Löschen</a>
             </li>
             <li role="separator" className="divider"></li>
-                <li>
-                  <a href={`/incidents/${incidentId}/task/create?message=${message._id}`}>
-                    <i className="fa fa-plus-square"></i>&nbsp; Pendenz/Antrag erstellen</a>
-                </li>
+            <li>
+              <a href={`/incidents/${incidentId}/task/create?message=${message._id}`}>
+                <i className="fa fa-plus-square"></i>&nbsp; Pendenz/Antrag erstellen</a>
+            </li>
           </ul>
         </div>
     )
@@ -164,8 +153,18 @@ export default class extends React.Component {
     if (event && event.preventDefault) {
       event.preventDefault();
     }
-    console.log('Toggle Prio for message:',messageId);
     const {togglePriority} = this.props;
     togglePriority(messageId);
   }
+
+  deleteMessage(messageId, event) {
+    // Becaus the test cannot get event argument
+    // so call preventDefault() on undefined cause an error
+    if (event && event.preventDefault) {
+      event.preventDefault();
+    }
+    const {deleteMessage} = this.props;
+    deleteMessage(messageId);
+  }
+
 }

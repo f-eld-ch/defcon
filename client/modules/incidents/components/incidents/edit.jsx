@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import Error  from '/client/modules/core/components/error.jsx';
+
 
 export default class extends React.Component {
 
@@ -28,10 +30,9 @@ export default class extends React.Component {
   }
 
   render() {
-    const {incident,error} = this.props;
     return (
       <div className="hidden-print">
-        {error ? this.renderError(error) : null}
+        <Error message={this.props.error} clearErrors={this.props.clearErrors} />
         <h2>Ereignis bearbeiten</h2>
         <div className="incident-editor">
           <form className="form-horizontal add-incident-entry" onSubmit={this.saveIncident.bind(this)}>
@@ -81,14 +82,6 @@ export default class extends React.Component {
           <i className="fa fa-lg fa-external-link"></i>&nbsp; Neu Öffnen</button>
       );
     }
-  }
-
-  renderError(error) {
-    return (
-      <div className='alert alert-danger fade in error'>
-        {error}
-      </div>
-    );
   }
 
   getDate(date) {

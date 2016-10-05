@@ -1,12 +1,12 @@
 import React from 'react';
 import moment from 'moment';
+import Error  from '/client/modules/core/components/error.jsx';
 
 class NewIncident extends React.Component {
   render() {
-    const {error} = this.props;
     return (
         <div>
-            {error ? this.renderError(error) : null}
+            <Error message={this.props.error} clearErrors={this.props.clearErrors} />
             <h2>Neues Ereignis</h2>
             <div className="incident-editor">
               <form className="form-horizontal add-incident-entry" onSubmit={this.createIncident.bind(this)}>
@@ -38,14 +38,6 @@ class NewIncident extends React.Component {
               </form>
             </div>
         </div>
-    );
-  }
-
-  renderError(error) {
-    return (
-      <div className='alert alert-danger fade in error'>
-        {error}
-      </div>
     );
   }
 

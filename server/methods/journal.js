@@ -1,7 +1,7 @@
 import {Journal,Incidents} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {logger} from '/server/lib/logger.js';
-import {moment} from 'moment';
+import moment   from 'moment';
 import {check,Match} from 'meteor/check';
 
 export default() => {
@@ -48,7 +48,7 @@ export default() => {
 
       let msg = Journal.findOne(message._id);
       if (!msg) {
-        throw new Meteor.Error('invalid-journal-message', 'Nachricht existiert nicht', message._id);
+        throw new Meteor.Error(404, 'Nachricht existiert nicht', message._id);
       }
 
       let difference = moment().diff(moment(msg.insertedAt), 'seconds');
@@ -71,14 +71,16 @@ export default() => {
       const selector = {
         _id
       };
+      logger.info('deletion of message ', _id , ' by User ', Meteor.uuid() );
+
 
       let msg = Journal.findOne(selector);
       if (!msg) {
-        throw new Meteor.Error('invalid-journal-message', 'Nachricht existiert nicht', _id);
+        throw new Meteor.Error(404, 'Nachricht existiert nicht', _id);
       }
       let difference = moment().diff(moment(msg.insertedAt), 'seconds');
       if (!msg.insertedAt || difference > 60) {
-        throw new Meteor.Error('invalid-journal-message', 'Nachricht kann nicht gelöscht werden (nur möglich während 60 Sekunden).', _id);
+        throw new Meteor.Error(403, 'Nachricht kann nicht gelöscht werden (nur möglich während 60 Sekunden).', _id);
       } else {
         Journal.remove(selector);
       }
@@ -92,7 +94,7 @@ export default() => {
 
       let message = Journal.findOne(selector);
       if (!message) {
-        throw new Meteor.Error('invalid-journal-message', 'Nachricht existiert nicht', _id);
+        throw new Meteor.Error(404, 'Nachricht existiert nicht', _id);
       }
 
       if (Meteor.isServer) {

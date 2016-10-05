@@ -19,8 +19,8 @@ export default {
       if (err) {
         return LocalState.set('INCIDENTS.SAVE_ERROR', err.message);
       }
+      FlowRouter.go(`/incidents`);
     });
-    FlowRouter.go(`/incidents`);
   },
 
   // update

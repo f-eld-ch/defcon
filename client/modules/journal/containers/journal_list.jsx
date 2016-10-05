@@ -27,6 +27,7 @@ export const depsMapper = (context, actions) => ({
   clearErrors: actions.journal.clearErrors,
   toggleShowAll: actions.journal.toggleShowAll,
   togglePriority: actions.journal.togglePriority,
+  deleteMessage: actions.journal.deleteMessage,
   context: () => context
 });
 
