@@ -4,11 +4,11 @@ import IncidentNav from '../../components/navigation/incidents.jsx';
 
 export const composer = ({context, incidentId}, onData) => {
   const {Meteor, LocalState, Collections} = context();
-  if (!incident) {
+  if (!incidentId) {
     return onData(null,{});
   }
 
-  if (Meteor.subscribe('incidents.single', incident).ready()) {
+  if (Meteor.subscribe('incidents.single', incidentId).ready()) {
     const incident = Collections.Incidents.findOne({_id: incidentId});
     onData(null, {incident});
   }
