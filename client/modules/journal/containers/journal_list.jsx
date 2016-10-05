@@ -3,18 +3,18 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import JournalList from '../components/journal_list.jsx';
 import Loader from '/client/modules/core/components/loader/loader.jsx';
 
-export const composer = ({context, clearErrors, incidentId}, onData) => {
+export const composer = ({context, clearErrors, incidentId, showControls}, onData) => {
   const {Meteor, Collections, LocalState} = context();
 
+  const error   = LocalState.get('JOURNAL.SAVE_ERROR');
   const showAll = LocalState.get('JOURNAL.SHOW_ALL');
   if (showAll === undefined) {
       LocalState.set('JOURNAL.SHOW_ALL', true);
   }
-  const error   = LocalState.get('JOURNAL.SAVE_ERROR');
 
   const selector = showAll ? {incident: incidentId} : {incident: incidentId, priority: true};
   if (Meteor.subscribe('journal.list', incidentId).ready()) {
-    const messages = Collections.Journal.find(selector).fetch();
+    const messages = Collections.Journal.find(selector, {sort: {createdAt: -1}}).fetch();
 
     onData(null, {messages, showAll, error});
   }

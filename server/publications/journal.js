@@ -14,7 +14,7 @@ export default function() {
     return Journal.find(selector, options);
   });
 
-  Meteor.publish('journal.item', function(_id) {
+  Meteor.publish('journal.single', function(_id) {
     check(_id, String);
     const selector = {_id};
     return Journal.find(selector);

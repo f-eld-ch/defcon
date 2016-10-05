@@ -5,22 +5,14 @@ import Error  from '/client/modules/core/components/error.jsx';
 export default class extends React.Component {
   render() {
     return (
-      <div>
-        <Error message={this.props.error} clearErrors={this.props.clearErrors} />
-        {this.renderJournal()}
-      </div>
-    );
-  }
+        <div className="journal">
+          <Error message={this.props.error} clearErrors={this.props.clearErrors} />
 
-  renderJournal() {
-    return (
-      <div className="journal">
-        <h2>Journal</h2>
-        {this.renderHideBox()}
-        {this.renderJournalEntries()}
-        {this.renderJournalPrint()}
-
-      </div>
+          <h2>Journal</h2>
+          {this.renderHideBox()}
+          {this.renderJournalEntries()}
+          {this.renderJournalPrint()}
+        </div>
     );
   }
 
@@ -102,7 +94,10 @@ export default class extends React.Component {
   }
 
   renderControl(message) {
-    const {incidentId} = this.props;
+    const {incidentId,showControls} = this.props;
+    if (!showControls) {
+        return null;
+    }
 
     return (
         <div className="btn-group btn-group-sm">

@@ -1,47 +1,67 @@
 export default {
-  create({Meteor, LocalState}, message) {
-    if (!message.text) {
+  create({Meteor, LocalState}, sender, receiver, text, createdAt, incident) {
+    if (!text) {
       return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht muss einen Text haben.');
     }
 
-    if (!message.sender) {
+    if (!sender) {
       return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht muss einen Sender haben.');
     }
 
-    if (!message.receiver) {
+    if (!receiver) {
       return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht muss einen Empfänger haben.');
+    }
+    if (!incident) {
+      return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht für unbekanntes Ereignis.');
+    }
+    if (!createdAt) {
+        createdAt = new Date();
     }
 
     LocalState.set('JOURNAL.SAVE_ERROR', null);
 
     const id = Meteor.uuid();
-    Meteor.call('journal.create', id, message, (err) => {
+    Meteor.call('journal.create', id, sender, receiver ,text, createdAt, incident, (err) => {
       if (err) {
         return LocalState.set('JOURNAL.SAVE_ERROR', err.message);
       }
+      FlowRouter.go(`/incidents/${incident}/journal/write`);
     });
   },
 
-  update({Meteor, LocalState, FlowRouter}, message) {
-    if (!message.text) {
+  update({Meteor, LocalState, FlowRouter}, id, sender, receiver, text, createdAt, incident) {
+    if (!text) {
       return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht muss einen Text haben.');
     }
 
-    if (!message.sender) {
+    if (!sender) {
       return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht muss einen Sender haben.');
     }
 
-    if (!message.receiver) {
+    if (!receiver) {
       return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht muss einen Empfänger haben.');
+    }
+
+    if (!id) {
+      return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht unbekannt. Update nicht möglich!');
+    }
+
+    if (!incident) {
+      return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht für unbekanntes Ereignis.');
+    }
+
+    if (!createdAt) {
+      return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht muss ein gültiges Datum haben.');
     }
 
     LocalState.set('JOURNAL.SAVE_ERROR', null);
 
-    Meteor.call('journal.update', message, (err) => {
+    Meteor.call('journal.update', id, sender, receiver ,text, createdAt, incident, (err) => {
       if (err) {
         return LocalState.set('JOURNAL.SAVE_ERROR', err.message);
       }
-      FlowRouter.go(`/incidents/${message.incident}/journal`);
+      FlowRouter.go(`/incidents/${incident}/journal/write`);
+
     });
   },
 
@@ -60,7 +80,7 @@ export default {
   },
 
   deleteAndGo({Meteor, LocalState, FlowRouter}, message) {
-    if (!id) {
+    if (!message._id) {
       return LocalState.set('JOURNAL.SAVE_ERROR', 'Nachricht unbekannt. Löschen nicht möglich!');
     }
 
@@ -69,7 +89,7 @@ export default {
       if (err) {
         return LocalState.set('JOURNAL.SAVE_ERROR', err.message);
       }
-      FlowRouter.go(`/incidents/${message.incident}/journal`);
+      FlowRouter.go(`/incidents/${message.incident}/journal/write`);
     });
   },
 

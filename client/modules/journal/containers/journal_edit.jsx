@@ -1,16 +1,16 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
-import Journal from '../components/journal_add.jsx';
+import JournalEditor from '../components/journal_editor.jsx';
 import Loader from '/client/modules/core/components/loader/loader.jsx';
 
-export const composer = ({context, clearErrors, messageId}, onData) => {
+export const composer = ({context, clearErrors, incidentId, messageId}, onData) => {
   const {Meteor, Collections, LocalState} = context();
-
   const error = LocalState.get('JOURNAL.SAVE_ERROR');
+
   const selector = {_id: messageId};
   if (Meteor.subscribe('journal.single', messageId).ready()) {
-    const messages = Collections.Journal.find(selector).fetch();
-    onData(null, {messages, error});
+    const message = Collections.Journal.findOne(selector);
+    onData(null, {message, error});
   }
 
   // clearErrors when unmounting the component
@@ -18,6 +18,7 @@ export const composer = ({context, clearErrors, messageId}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
+  create: actions.journal.create,
   update: actions.journal.update,
   deleteMessage: actions.journal.deleteAndGo,
   clearErrors: actions.journal.clearErrors,
@@ -27,4 +28,4 @@ export const depsMapper = (context, actions) => ({
 export default composeAll(
   composeWithTracker(composer,Loader),
   useDeps(depsMapper)
-)(Journal);
+)(JournalEditor);

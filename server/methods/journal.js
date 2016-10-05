@@ -7,60 +7,56 @@ import {check,Match} from 'meteor/check';
 export default() => {
   Meteor.methods({
 
-    'journal.create' (message) {
-      check(message, {
-        sender: String,
-        receiver: String,
-        text: String,
-        incident: String,
-        createdAt: Match.Optional(Date),
-        priority: Match.Optional(Boolean)
-      });
+    'journal.create' (id, sender, receiver ,text, createdAt, incident) {
+      check(sender, String);
+      check(receiver, String);
+      check(text, String);
+      check(incident, String);
+      check(createdAt, Date);
 
       const selector = {
-        _id: message.incident
+        _id: incident
       };
       if (!Incidents.findOne(selector)) {
-        throw new Meteor.Error('journal.create.INVALID', 'Ereignis schein falsch zu sein', message);
+        throw new Meteor.Error('journal.create.INVALID', 'Ereignis existiert nicht!');
       }
 
       Journal.insert({
-        createdAt: message.createdAt ? message.createdAt : new Date(),
+        createdAt: createdAt ? createdAt : new Date(),
         insertedAt: new Date(),
-        text: message.text,
-        sender: message.sender,
-        receiver: message.receiver,
-        incident: message.incident,
-        priority: message.priority ? message.priority : false
+        text: text,
+        sender: sender,
+        receiver: receiver,
+        incident: incident,
+        priority: false
       });
     },
 
-    'journal.update' (message) {
-      check(message, {
-        _id: String,
-        sender: String,
-        receiver: String,
-        text: String,
-        incident: String,
-        createdAt: Date,
-        priority: Boolean
-      });
+    'journal.update' (id, sender, receiver ,text, createdAt, incident) {
+      check(id, String);
+      check(sender, String);
+      check(receiver, String);
+      check(text, String);
+      check(incident, String);
+      check(createdAt, Match.Optional(Date));
 
-      let msg = Journal.findOne(message._id);
+      let msg = Journal.findOne(id);
       if (!msg) {
-        throw new Meteor.Error(404, 'Nachricht existiert nicht', message._id);
+        throw new Meteor.Error(404, 'Nachricht existiert nicht', id);
       }
 
       let difference = moment().diff(moment(msg.insertedAt), 'seconds');
       if (!msg.insertedAt || difference > 60) {
-        throw new Meteor.Error('update-outdated-journal-message', 'Nachricht kann nicht mehr editiert werden (nur möglich während 60 Sekunden).', message._id);
+        throw new Meteor.Error('update-outdated-journal-message', 'Nachricht kann nicht mehr editiert werden (nur möglich während 60 Sekunden).');
       } else {
-        Journal.update(message._id, {
+        Journal.update(id, {
           $set: {
-            createdAt: message.createdAt,
-            text: message.text,
-            sender: message.sender,
-            receiver: message.receiver
+            createdAt: createdAt,
+            text: text,
+            sender: sender,
+            receiver: receiver,
+            incident: incident,
+            priority: msg.priority
           }
         });
       }

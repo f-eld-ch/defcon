@@ -80,7 +80,7 @@ export default class extends React.Component {
                   <div className="clearfix visible-xs-block"></div>
                   <div className="col-sm-2 col-xs-12">
                       <div className="btn-group">
-                            <a role="button" className="btn btn-primary" href={`/incidents/${incident._id}/journal`}><i className="fa fa-bars"></i>&nbsp; Journal</a>
+                            <a role="button" className="btn btn-primary" href={`/incidents/${incident._id}/journal/write`}><i className="fa fa-bars"></i>&nbsp; Journal</a>
                             <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                               <span className="caret"></span>
                               <span className="sr-only">Toggle Dropdown</span>

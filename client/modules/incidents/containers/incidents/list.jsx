@@ -11,7 +11,7 @@ export const composer = ({context,clearErrors}, onData) => {
 
   const selector = showCompleted ? {} : {closedAt: null};
   if (Meteor.subscribe('incidents.list').ready()) {
-    const incidents = Collections.Incidents.find(selector).fetch();
+    const incidents = Collections.Incidents.find(selector,{sort: {createdAt: -1}}).fetch();
     const openIncidents = Collections.Incidents.find({closedAt: null}).count();
     onData(null, {incidents, showCompleted, openIncidents,error});
   }
