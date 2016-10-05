@@ -6,4 +6,4 @@ export default() => {
     sendVerificationEmail: false,
     forbidClientAccountCreation: true
   });
-}
+};

@@ -12,4 +12,4 @@ methods();
 addInitialData();
 addInitialUsers();
 accountsConfig();
-logger.info("Server started");
+logger.info('Server started');

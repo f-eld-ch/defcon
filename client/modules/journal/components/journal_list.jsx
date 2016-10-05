@@ -121,12 +121,12 @@ export default class extends React.Component {
             </li>
           </ul>
         </div>
-    )
+    );
   }
 
   getDate(date) {
     if (!date) {
-      return
+      return;
     }
     return moment(date).format('DD.MM.YYYY HH:mm:ss');
   }

@@ -16,7 +16,7 @@ export default class extends React.Component {
   }
 
   renderTitle(){
-      const {openIncidents} = this.props
+      const {openIncidents} = this.props;
       if (openIncidents === 0){
           return (
               <h3>Kein offenes Ereignis</h3>
@@ -95,7 +95,7 @@ export default class extends React.Component {
               </div>
           ))}
       < /div>
-    )
+  );
   }
 
   renderCloseButton(incident) {
@@ -107,13 +107,13 @@ export default class extends React.Component {
       else {
           return (
               <a href="#" onClick={this.closeIncident.bind(this,incident._id)}><i className="fa fa-times"></i>&nbsp; Beenden</a>
-          )
+          );
       }
   }
 
   getDate(date) {
       if (! date ) {
-          return
+          return;
       }
       return moment(date).format('DD.MM.YYYY HH:mm');
   }
