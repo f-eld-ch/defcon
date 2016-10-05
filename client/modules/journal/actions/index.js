@@ -1,7 +1,7 @@
-import journalCreate from './create';
+import journal from './journal';
 
 const actions = {
-  journalCreate
+  journal
 };
 
 export default actions;

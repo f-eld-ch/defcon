@@ -76,7 +76,7 @@ export default class extends React.Component {
               <div className="col-sm-2 col-xs-4"><b>Optionen</b></div>
           </div>
           {incidents.map(incident => (
-              <div className="row incident-list-row" key={incident._id}>
+              <div className="row incident-entry" id={incident.closedAt ? 'incident-entry-closed' : '' } key={incident._id}>
                   <div className="col-xs-6 visible-xs"><b>Name:</b></div>
                   <div className="col-sm-4 col-xs-6">{incident.name}</div>
                   <div className="col-xs-6 visible-xs"><b>Ort:</b></div>
@@ -85,7 +85,7 @@ export default class extends React.Component {
                   <div className="col-sm-2 col-xs-6">{this.getDate(incident.createdAt)}</div>
                   <div className="col-xs-6 visible-xs"><b>Geschlossen:</b></div>
                   <div className="col-sm-2 col-xs-6">{this.getDate(incident.closedAt)}</div>
-                  <div class="clearfix visible-xs-block"></div>
+                  <div className="clearfix visible-xs-block"></div>
                   <div className="col-sm-2 col-xs-12">
                       <div className="btn-group">
                             <a role="button" className="btn btn-primary" href={`/incidents/${incident._id}/journal`}><i className="fa fa-bars"></i>&nbsp; Journal</a>

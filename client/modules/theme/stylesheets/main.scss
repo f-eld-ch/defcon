@@ -1,7 +1,6 @@
+@import '{}/node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 @import "_variables.scss";
 @import "_bootwatch.scss";
-@import '{}/node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
-
 
 pre {
 	white-space: pre-wrap;
@@ -15,29 +14,13 @@ pre {
 	margin-bottom: 10px;
 	@include box-shadow($gray 2px 2px 10px);
 }
-.journal-entry {
-    padding: 10px;
-    margin: 10px;
-    border-radius: 3px;
-    @include box-shadow($gray 2px 2px 10px);
-}
-.journal-entry-heading {
-	font-weight: bold;
-}
-
-#priority {
-    background: $state-danger-bg;
-    border-color: $state-danger-border;
-}
 
 textarea {
 	resize: vertical;
 }
 body {
 	//padding-top: 60px;
-}
-.btn {
-	margin: 0 5px;
+    margin: 0 10px;
 }
 
 #spinner {
@@ -55,4 +38,52 @@ body {
 		white-space: pre-line;
 		word-wrap: break-word;
 	}
+}
+
+
+.incident-table tbody > tr > td {
+	vertical-align: middle;
+}
+
+
+.table-responsive {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
+.incident-entry {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    @include box-shadow($gray 2px 2px 10px);
+}
+
+#incident-entry-closed {
+    background-color: $gray-lighter;
+}
+
+.incident-list {
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+}
+
+.journal-entry {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    @include box-shadow($gray 2px 2px 10px);
+
+    pre {
+        font-style: normal;
+        font-family: sans-serif;
+    }
+}
+
+.journal-entry-heading {
+	font-weight: bold;
+}
+
+#journal-message-prio {
+    background: $btn-warning-bg;
+    border-color: $btn-warning-bg;
 }

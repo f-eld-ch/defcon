@@ -9,6 +9,7 @@ import AppConfig from '/client/configs/app.js';
 export default class extends React.Component {
 
   render() {
+    const {FlowRouter} = this.props;
     return (
       <div>
 

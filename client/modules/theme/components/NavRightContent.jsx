@@ -1,10 +1,10 @@
 import React from 'react';
 
 import _userControls from './UserControls.jsx';
-import authComposer  from '../../core/composers/auth.jsx';
+import navComposer  from '../../core/composers/navigation.jsx';
 
 
-const UserControls = authComposer(_userControls);
+const UserControls = navComposer(_userControls);
 
 export default class extends React.Component {
   render() {

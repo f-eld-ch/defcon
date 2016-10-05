@@ -4,7 +4,7 @@ import React from 'react';
 export default React.createClass({
   render() {
 
-    const {brand, leftContent, rightContent} = this.props;
+    const {brand, leftContent, rightContent, context} = this.props;
     return (
       <header className="main-header">
         <div className="navbar navbar-default navbar-static-top">

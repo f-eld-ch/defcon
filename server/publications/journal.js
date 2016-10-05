@@ -10,7 +10,7 @@ export default function() {
         createdAt: -1
       }
     };
-    const selector = {incident};
+    const selector = {incident: incident};
     return Journal.find(selector, options);
   });
 
