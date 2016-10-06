@@ -17,6 +17,7 @@ RUN apt-get install curl -y \
 
   # Build the Meteor app
   && cd /home/meteorapp/meteorapp \
+  && meteor npm install --production
   && meteor build /home/meteorapp/build --directory \
 
   # Build the NPM packages needed for build
