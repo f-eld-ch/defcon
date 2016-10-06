@@ -13,7 +13,7 @@ RUN apt-get update -q && apt-get clean
 RUN apt-get install curl -y \
 
   # Install Meteor
-  && (curl https://install.meteor.com/ | sh) \
+  && (curl https://install.meteor.com/ | sed s/--progress-bar/-sL/g | sh) \
 
   # Build the Meteor app
   && cd /home/meteorapp/meteorapp \
