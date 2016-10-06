@@ -9,18 +9,18 @@ import AppConfig from '/client/configs/app.js';
 export default class extends React.Component {
 
   render() {
-    const {FlowRouter} = this.props;
+    const {incident,content} = this.props;
     return (
       <div>
-
         <NavHeader
           brand={()=> (AppConfig.name) }
-          leftContent={()=> (<NavLeftContent />) }
+          leftContent={()=> (<NavLeftContent incidentId={incident}/>)}
           rightContent={()=> (<NavRightContent />) }
+          incidentId={incident}
         />
 
         <div className="container-fluid">
-            {this.props.content()}
+            {content()}
         </div>
       </div>
     );

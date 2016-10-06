@@ -33,6 +33,7 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'incidents.single',
     action({incidentId}) {
       mount(MainLayoutCtx, {
+        incident: incidentId,
         content: () => (<Incident incidentId={incidentId}/>)
       });
     }
@@ -42,6 +43,7 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'incidents.edit',
     action({incidentId}) {
       mount(MainLayoutCtx, {
+        incident: incidentId,
         content: () => (<IncidentEdit incidentId={incidentId}/>)
       });
     }

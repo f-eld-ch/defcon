@@ -13,6 +13,7 @@ export default function(injectDeps, {FlowRouter}) {
     name: 'journal.list',
     action({incidentId}) {
       mount(MainLayoutCtx, {
+        incident: incidentId,
         content: () => (
             <div>
                 <JournalList incidentId={incidentId} showControls={false}/>
@@ -26,6 +27,7 @@ export default function(injectDeps, {FlowRouter}) {
     name: 'journal.list',
     action({incidentId}) {
       mount(MainLayoutCtx, {
+        incident: incidentId,
         content: () => (
             <div>
                 <JournalAdd incidentId={incidentId}/>
@@ -40,6 +42,7 @@ export default function(injectDeps, {FlowRouter}) {
     name: 'journal.list',
     action({incidentId,messageId}) {
       mount(MainLayoutCtx, {
+          incident: incidentId,
           content: () => (
               <div>
                   <JournalEdit incidentId={incidentId} messageId={messageId}/>
