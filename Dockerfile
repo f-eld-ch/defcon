@@ -1,4 +1,4 @@
-FROM node:4.4.7
+FROM node:4.6-slim
 MAINTAINER Daniel Aschwanden <nimdanitro@gmail.com>
 RUN mkdir /home/meteorapp
 
@@ -13,7 +13,7 @@ RUN apt-get update -q && apt-get clean
 RUN apt-get install curl -y \
 
   # Install Meteor
-  && (curl https://install.meteor.com/ | sed s/--progress-bar/-sL/g | sh) \
+  && (curl https://install.meteor.com/ | sh) \
 
   # Build the Meteor app
   && cd /home/meteorapp/meteorapp \
