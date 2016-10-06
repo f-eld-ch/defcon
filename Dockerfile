@@ -1,4 +1,4 @@
-FROM node:4.4.7-slim
+FROM node:4.4.7
 MAINTAINER Daniel Aschwanden <nimdanitro@gmail.com>
 RUN mkdir /home/meteorapp
 
