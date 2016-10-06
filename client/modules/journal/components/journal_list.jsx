@@ -5,13 +5,14 @@ import Error  from '/client/modules/core/components/error.jsx';
 export default class extends React.Component {
   render() {
     return (
-        <div className="journal">
+        <div>
           <Error message={this.props.error} clearErrors={this.props.clearErrors} />
-
+          <div className="journal">
           <h2>Journal</h2>
           {this.renderHideBox()}
           {this.renderJournalEntries()}
           {this.renderJournalPrint()}
+          </div>
         </div>
     );
   }
