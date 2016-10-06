@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM node:4.4.7-slim
 MAINTAINER Daniel Aschwanden <nimdanitro@gmail.com>
 RUN mkdir /home/meteorapp
 
@@ -16,17 +16,11 @@ RUN apt-get install curl -y \
   && (curl https://install.meteor.com/ | sh) \
 
   # Build the Meteor app
-  && cd /home/meteorapp/meteorapp/app \
-  && meteor build ../build --directory \
-
-  # Install the version of Node.js we need.
-  && cd /home/meteorapp/meteorapp/build/bundle \
-  && bash -c 'curl "https://nodejs.org/dist/$(<.node_version.txt)/node-$(<.node_version.txt)-linux-x64.tar.gz" > /home/meteorapp/meteorapp/build/required-node-linux-x64.tar.gz' \
-  && cd /usr/local && tar --strip-components 1 -xzf /home/meteorapp/meteorapp/build/required-node-linux-x64.tar.gz \
-  && rm /home/meteorapp/meteorapp/build/required-node-linux-x64.tar.gz \
+  && cd /home/meteorapp/meteorapp \
+  && meteor build /home/meteorapp/build --directory \
 
   # Build the NPM packages needed for build
-  && cd /home/meteorapp/meteorapp/build/bundle/programs/server \
+  && cd /home/meteorapp/build/bundle/programs/server \
   && npm install \
 
   # Get rid of Meteor. We're done with it.
@@ -41,4 +35,4 @@ RUN npm install -g forever
 EXPOSE 80
 ENV PORT 80
 
-CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "meteorapp/build/bundle/main.js"]
+CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "build/bundle/main.js"]
