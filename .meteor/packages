@@ -4,27 +4,24 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-accounts-password
-momentjs:moment
+accounts-password@1.3.0
 fortawesome:fontawesome
-meteor-base
-mobile-experience
-mongo
-session
-tracker
-logging
-reload
-ejson
-react
-kadira:react-layout
+meteor-base@1.0.4
+mobile-experience@1.0.4
+mongo@1.1.12_1
+session@1.1.6
+tracker@1.1.0
+logging@1.1.15_1
+reload@1.1.10
+ejson@1.0.12
 kadira:flow-router
-votercircle:winston
-themeteorchef:bert
-ecmascript
 meteorhacks:kadira
-dpraburaj:react-spin
-check
-fourseven:scss
-reywood:bootstrap3-sass
-static-html
 seba:minifiers-autoprefixer
+std:accounts-ui
+dburles:collection-helpers
+aldeed:simple-schema
+aldeed:collection2
+shell-server@0.2.1
+ecmascript@0.5.8_1
+std:accounts-bootstrap
+fourseven:scss

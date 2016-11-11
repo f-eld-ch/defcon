@@ -1,0 +1,115 @@
+@import '{}/node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+@import "_variables.scss";
+@import "_bootwatch.scss";
+
+pre {
+	white-space: pre-wrap;
+	//Instead of the line below you could use @include word-break($value)
+	word-break: normal;
+}
+
+.main {
+	//background: $white;
+	border-radius: 3px;
+	padding: 10px;
+	margin-bottom: 10px;
+	@include box-shadow($gray 2px 2px 10px);
+}
+
+textarea {
+	resize: vertical;
+}
+
+body {
+	//padding-top: 60px;
+}
+
+#spinner {
+	height: 300px;
+}
+@media print {
+	body {
+		padding: 0;
+		font-size: 11px;
+	}
+
+	.pre {
+		white-space: pre-line;
+	}
+
+	.journal-table tbody > tr > td {
+		white-space: pre-line;
+		word-wrap: break-word;
+	}
+}
+
+.incident-table tbody > tr > td {
+	vertical-align: middle;
+}
+
+.table-responsive {
+	overflow-x: visible !important;
+	overflow-y: visible !important;
+}
+
+.incident-entry {
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	@include box-shadow($gray 2px 2px 10px);
+}
+
+#incident-entry-closed {
+	background-color: $gray-lighter;
+}
+
+.alert {
+	margin: 0 10px;
+}
+
+.incident-list {
+	border-bottom: 1px solid;
+	margin-bottom: 10px;
+}
+
+.journal {
+	margin: 0 10px;
+}
+
+.journa-list {
+	margin: 0 10px;
+}
+
+.journal-editor {
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	@include box-shadow($gray 2px 2px 10px);
+
+	.btn {
+		margin-right: 10px;
+	}
+}
+
+.journal-entry {
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 3px;
+	@include box-shadow($gray 2px 2px 10px);
+
+	pre {
+		font-style: normal;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		font-family: sans-serif;
+	}
+}
+
+.journal-entry-heading {
+	font-weight: bold;
+}
+
+#journal-message-prio {
+	background: $btn-warning-bg;
+	border-color: $btn-warning-bg;
+}
