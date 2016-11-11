@@ -1,4 +1,5 @@
 import {mount} from 'react-mounter';
+import React from 'react';
 
 import {LayoutDefault} from '/client/configs/theme.jsx';
 import { Accounts }    from './components/accounts.jsx';
