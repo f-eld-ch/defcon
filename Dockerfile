@@ -3,6 +3,7 @@ MAINTAINER Daniel Aschwanden <nimdanitro@gmail.com>
 RUN mkdir /home/meteorapp
 
 WORKDIR /home/meteorapp
+ENV METEOR_ALLOW_SUPERUSER 1
 
 ADD . ./meteorapp
 
